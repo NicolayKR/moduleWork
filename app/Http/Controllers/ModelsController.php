@@ -24,17 +24,17 @@ class ModelsController extends Controller
 
         //Первая страница
         $courses = $doc->find('.apps-catalog-list__body-item');
-        $array = [];
+        $array_a = [];
         //echo (string)count($array)."  ";
         $current_item = $doc->find('.apps-catalog-list__body-item')[0]->find('a')[0];
-        echo $current_item;
-        for($i = 0; $i <= count($courses); $i++){
-            //$current_item = $doc->find('.apps-catalog-list__body-item')[i]->find('a')->text();
-            // $current_item->
+        for($i = 0; $i < count($courses); $i++){
+            $current_item = $doc->find('.apps-catalog-list__body-item')[$i]->find('a')[0];
+            array_push($array_a, $current_item);
         }
+        print_r($array_a);
         $navigate = $doc->find('.page-navigation__item');
-        echo  count($courses);
-        echo count($navigate);
+        // echo  count($courses);
+        // echo count($navigate);
         
         // echo $document->find('apps-catalog-list')[0];//->first('ul.menu')->xpath('//li')[0]->text();
       
