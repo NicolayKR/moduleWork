@@ -26,9 +26,10 @@ class ModelsController extends Controller
         $courses = $doc->find('.apps-catalog-list__body-item');
         $array_a = [];
         //echo (string)count($array)."  ";
-        $current_item = $doc->find('.apps-catalog-list__body-item')[0]->find('a')[0];
+        $current_item = $doc->find('.apps-catalog-list__body-item')[0]->find('a')[0]->attr('href');
+        //print_r($current_item);
         for($i = 0; $i < count($courses); $i++){
-            $current_item = $doc->find('.apps-catalog-list__body-item')[$i]->find('a')[0];
+            $current_item = $doc->find('.apps-catalog-list__body-item')[$i]->find('a')[0]->attr('href');
             array_push($array_a, $current_item);
         }
         print_r($array_a);
