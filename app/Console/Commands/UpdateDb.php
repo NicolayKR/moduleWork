@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use App\Models\Competitor;
+use DiDom\Document;
+use DiDom\Query; 
 
 class UpdateDb extends Command
 {
@@ -13,7 +15,7 @@ class UpdateDb extends Command
      *
      * @var string
      */
-    protected $signature = 'update';
+    protected $signature = 'minute:updatedb';
 
     /**
      * The console command description.
@@ -106,7 +108,7 @@ class UpdateDb extends Command
                         Competitor::where('name', '=', $current_item_name)->update(array(
                             'price'   => $current_item_price,
                             'downloads' =>  mb_strimwidth($current_item_download, 11, strlen($current_item_download))
-                          ));
+                        ));
                     } else{
                         $newModules= Competitor::create(array(
                             'name'  => $current_item_name,
@@ -117,5 +119,7 @@ class UpdateDb extends Command
                     }               
             }
         }       
+         
+        
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        
+        <b-table striped hover :items="modelsData"></b-table>
     </div>
 </template>
 
@@ -8,7 +8,7 @@
     export default {
         data() {
             return {
-                name: ''
+                modelsData: []
             }
         },
         mounted(){
@@ -19,9 +19,10 @@
                try{
                 const response = await axios.get(`/can`)  
                     console.log(response);
-                    this.cityWeathers = response.data;
+                    this.modelsData = response.data;
                     }
                     catch{
+
                     }                            
             },
         }
