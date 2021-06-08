@@ -3,25 +3,25 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Models\Competitor;
+use App\Models\CompetitorHistory;
 use DiDom\Document;
 use DiDom\Query; 
 
-class UpdateDb extends Command
+class UpdateHistoryDb extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'minute:updatedb';
+    protected $signature = 'update:HistoryChange';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'This will update db every day';
+    protected $description = 'show when changed count downloads';
 
     /**
      * Create a new command instance.
@@ -54,7 +54,7 @@ class UpdateDb extends Command
         $array_a_navigate_item = [];
         array_push($array_a_navigate_item, $url."&PAGEN_1=1");
         $navigate = $doc->find('.page-navigation__item');
-        $collection = Competitor::select('name')->get()->values()->all();
+        $collection = CompetitorHistory::select('name')->get()->values()->all();
         date_default_timezone_set("Europe/Moscow");
         for($i = 1; $i < count($navigate); $i++){
             array_push($array_a_navigate_item, 'https://www.bitrix24.ru'.$doc->find('.page-navigation__item')[$i]->attr('href'));
@@ -102,20 +102,11 @@ class UpdateDb extends Command
                 }else{
                     $current_item_download = $doc_page->find('.apps-catalog-detail__sidebar-text')[1]->text();
                 }
-                $result = Competitor::select(Competitor::raw('COUNT(*)'))->where('name', $current_item_name)->count(); 
-                    if($result == 1) {
-                        Competitor::where('name', '=', $current_item_name)->update(array(
-                            'price'   => $current_item_price,
-                            'downloads' =>  mb_strimwidth($current_item_download, 11, strlen($current_item_download))
-                        ));
-                    } else{
-                        $newModules= Competitor::create(array(
-                            'name'  => $current_item_name,
-                            'price' => $current_item_price,
-                            'downloads'=> mb_strimwidth($current_item_download, 11, strlen($current_item_download))
-                        ));
-                        $newModules->save();
-                    }               
+                $newModules= CompetitorHistory::create(array(
+                    'name'  => $current_item_name,
+                    'downloads'=> mb_strimwidth($current_item_download, 11, strlen($current_item_download))
+                ));
+                $newModules->save();                   
             }
         }       
     }

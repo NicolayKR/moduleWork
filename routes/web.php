@@ -22,8 +22,10 @@ Route::get('/', function () {
 });
 Route::get('/can', 'App\Http\Controllers\ModelsController@getModels');
 
-// Route::get('/test', function(){
-// });
+Route::get('/test', function(){
+    $collection = Competitor::select('name as "Название модуля"','price as "Платно"','downloads as "Количество скачиваний"')->orderBy('downloads', 'desc')->get();
+    return $collection;
+});
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

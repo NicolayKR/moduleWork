@@ -7,7 +7,9 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use DiDom\Document;
 use DiDom\Query;
 use App\Models\Competitor;
+use App\Models\CompetitorHistory;
 use App\Console\Commands\UpdateDb;
+use App\Console\Commands\UpdateHistoryDb;
 
 class Kernel extends ConsoleKernel
 {
@@ -29,6 +31,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('minute:updatedb')->daily()->timezone("Europe/Moscow");
+        $schedule->command('update:HistoryChange')->everyMinute();//->daily()->timezone("Europe/Moscow");
     }
 
     /**
