@@ -1,29 +1,45 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ModelsController;
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use App\Models\Competitor;
-use DiDom\Document;
-use DiDom\Query;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+class UpdateDb extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'update';
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/can', 'App\Http\Controllers\ModelsController@getModels');
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'This will update db every day';
 
-Route::get('/test', function(){
-    $url = 'https://www.bitrix24.ru/apps/?q=%D0%BD%D0%B5%D0%B4%D0%B2%D0%B8%D0%B6%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C'; 
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
+    {
+        $url = 'https://www.bitrix24.ru/apps/?q=%D0%BD%D0%B5%D0%B4%D0%B2%D0%B8%D0%B6%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C'; 
         $referer = 'http://www.google.com';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -100,8 +116,6 @@ Route::get('/test', function(){
                         $newModules->save();
                     }               
             }
-        } 
-});
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+        }       
+    }
+}

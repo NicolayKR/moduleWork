@@ -71,7 +71,8 @@ class ModelsController extends Controller
                 }
                 echo $current_item_name."<br>";
                 echo $current_item_price."<br>";
-                echo $current_item_download."<br>"; 
+                echo mb_strimwidth($current_item_download, 11, strlen($current_item_download))."<br>";
+                
             }
         }
     }
