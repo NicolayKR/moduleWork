@@ -1,6 +1,8 @@
 <template>
     <div class="container">
-        <b-table striped hover :items="modelsData"></b-table>
+        <b-table striped hover :items="modelsData">
+            
+        </b-table>
         <canvas ref="myChart" width="800" height="300"></canvas>
     </div>
 </template>
