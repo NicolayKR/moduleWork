@@ -16,6 +16,7 @@ class CreateCompetitorHistoriesTable extends Migration
         Schema::create('competitor_histories', function (Blueprint $table) {
             $table->id();
             $table->text('name');
+            $table->integer('id_modules');
             $table->integer('downloads');
             $table->timestamps();
         });

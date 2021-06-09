@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class CompetitorHistory extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','downloads'];
+    protected $fillable = ['name','id_modules','downloads'];
 }

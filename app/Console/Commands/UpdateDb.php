@@ -90,7 +90,8 @@ class UpdateDb extends Command
                 //Секция вывода значений
                 $flag_price = false;
                 $current_item_price = 0;
-                $current_item_name = $doc_page->find('.apps-catalog-detail__name')[0]->text();//Имя
+                $current_item_name = $doc_page->find('.apps-catalog-detail__name')[0]->text();
+                $final_name = str_replace("+", "", $current_item_name);
                 foreach($doc_page->find('.apps-catalog-detail__sidebar-text') as $value){
                     if(strcmp($value->text(),"содержит встроенные покупки") == 0 ){
                         $flag_price = true;
@@ -102,6 +103,7 @@ class UpdateDb extends Command
                 }else{
                     $current_item_download = $doc_page->find('.apps-catalog-detail__sidebar-text')[1]->text();
                 }
+                
                 $result = Competitor::select(Competitor::raw('COUNT(*)'))->where('name', $current_item_name)->count(); 
                     if($result == 1) {
                         Competitor::where('name', '=', $current_item_name)->update(array(
@@ -110,7 +112,8 @@ class UpdateDb extends Command
                         ));
                     } else{
                         $newModules= Competitor::create(array(
-                            'name'  => $current_item_name,
+                            'name'  => $final_name,
+                            'link' => $url_a,
                             'price' => $current_item_price,
                             'downloads'=> mb_strimwidth($current_item_download, 11, strlen($current_item_download))
                         ));

@@ -16,6 +16,7 @@ class CreateCompetitorsTable extends Migration
         Schema::create('competitors', function (Blueprint $table) {
             $table->id();
             $table->text('name');
+            $table->text('link');
             $table->integer('price');
             $table->integer('downloads');
             $table->timestamps();
