@@ -16,20 +16,20 @@ export default {
     data() {
         return {
             modelsData:[],
-            graphData:[],
+            
             flagTable: false
         }
     },
     mounted(){
-        this.getModulesHistory();
+        this.getModules();
     },
     methods:{
-        async getModulesHistory(){
+        async getModules(){
             try{
             const response = await axios.get(`/getModels`) 
                 //console.log(response); 
-                this.graphData = response.data;
-                console.log(this.graphData);
+                this.modelsData = response.data;
+                console.log(this.modelsData);
                 }
                 catch{
                 }                            
