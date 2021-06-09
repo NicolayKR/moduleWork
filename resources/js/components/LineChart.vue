@@ -40,7 +40,7 @@ export default {
       }
     },
     async mounted() {
-      //this.getModelsHistory();
+     // this.getModulesHistory();
       this.renderChart({
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
