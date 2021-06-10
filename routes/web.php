@@ -24,17 +24,19 @@ Route::get('/', function () {
 //Route::get('/getModels', 'App\Http\Controllers\ModelsController@getModels');
 
 Route::get('/getModels', 'App\Http\Controllers\ModelsController@getModels');
+Route::get('/getGraphData', 'App\Http\Controllers\ModelsController@getGraphData');
 
 
 Route::get('/test', function(){
-    // $collection_history = CompetitorHistory::select('id_modules','downloads')->selectRaw("DATE(created_at) as created_date")->orderBy('id')->get();
-    // $array_data = array();
-    // foreach ($collection_history as $key => $value) {
-    //         $array_data[$value['id_modules']]['downloads'][] = $value['downloads'];
-    //         $array_data[$value['id_modules']]['dates'][] = $value['created_date'];    
-    //     }
-    // return $array_data;
-});
+    // $array_data = [];
+    //     $collection_history = CompetitorHistory::select('name','id_modules','downloads')->selectRaw("DATE(created_at) as created_date")->orderBy('id')->get();
+    //     foreach ($collection_history as $key => $value) {
+    //             $array_data[$value['id_modules']]['name'] = $value['name'];
+    //             $array_data[$value['id_modules']]['downloads'][] = (int)$value['downloads'];
+    //             $array_data[$value['id_modules']]['dates'][] = $value['created_date'];    
+    //         }
+    //     return $array_data;
+        });
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

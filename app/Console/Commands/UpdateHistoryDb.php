@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Models\Competitor;
 use App\Models\CompetitorHistory;
 use DiDom\Document;
 use DiDom\Query; 
@@ -40,6 +41,7 @@ class UpdateHistoryDb extends Command
      */
     public function handle()
     {
+        date_default_timezone_set("Europe/Moscow");
         $collection = Competitor::select('id','link')->get();
     $referer = 'http://www.google.com';
     foreach($collection as $value) {
@@ -58,7 +60,7 @@ class UpdateHistoryDb extends Command
         $flag_price = false;
         $current_item_price = 0;
         $current_item_name = $doc_page->find('.apps-catalog-detail__name')[0]->text();
-        $final_name = str_replace("+", "", $current_item_name);
+        //$final_name = str_replace("+", "", $current_item_name);
         foreach($doc_page->find('.apps-catalog-detail__sidebar-text') as $value){
             if(strcmp($value->text(),"содержит встроенные покупки") == 0 ){
                 $flag_price = true;
@@ -71,7 +73,7 @@ class UpdateHistoryDb extends Command
             $current_item_download = $doc_page->find('.apps-catalog-detail__sidebar-text')[1]->text();
         }
         $newModules= CompetitorHistory::create(array(
-            'name'  => $final_name,
+            'name'  => $current_item_name,
             'id_modules' =>$id_current_module,
             'downloads'=> mb_strimwidth($current_item_download, 11, strlen($current_item_download))
         ));
