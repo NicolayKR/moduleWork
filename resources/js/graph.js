@@ -1,4 +1,4 @@
-/*var xmlhttp = new XMLHttpRequest();
+var xmlhttp = new XMLHttpRequest();
 var url = "/getGraphData";
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
@@ -51,4 +51,4 @@ function plottingGraph(label, dataSets){
             }
         }
     });
-}*/
+}
