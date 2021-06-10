@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::get('/getModels', 'App\Http\Controllers\ModelsController@getModels');
 Route::get('/getGraphData', 'App\Http\Controllers\ModelsController@getGraphData');
-
+Route::get('/getGraphLabel', 'App\Http\Controllers\ModelsController@getGraphLabel');
 
 Route::get('/test', function(){
     $array_data = [];
@@ -43,19 +43,8 @@ Route::get('/test', function(){
     foreach ($array_data as $value){
         $dates = array_merge($dates,$value["dates"]);
         $dates = array_unique($dates);
-        $currentData = new stdClass();
-        //Название Линии
-        $currentData->label = $value["name"];
-        //Количество скачиваний
-        $currentData->data = $value["downloads"];
-        //Рандомный цвет
-        $currentData->borderColor = rand_color();
-        //
-        $currentData->backgroundColor = 'transparent'; 
-        $currentData->borderWidth = 2;
-        array_push($dataSet, $currentData);
     }
-    return $dataSet;
+    return $dates;
 });
 // Auth::routes();
 

@@ -18,7 +18,7 @@
                 </tbody>
             </table>
             
-            <graph :/>
+            <graph :dataSet="graphData" :label ="graphLabel"/>
 
         </div>
         <div v-else>
@@ -43,12 +43,15 @@ export default {
     data() {
         return {
             modelsData:[],
+            graphData: [],
+            graphLabel: [],
             flagTable: false
         }
     },
     async mounted(){
         this.getModules();
-        //this.getGraphData(); 
+        this.getGraphData(); 
+        this.getGraphLabel(); 
     },
     methods:{
         async getModules(){
@@ -74,7 +77,19 @@ export default {
             catch{
                 setTimeout(this.flagGraph = false,10000);
             } 
-        }              
+        } ,
+        async getGraphLabel(){
+            try{
+                const response = await axios.get(`/getGraphLabel`) 
+                //console.log(response); 
+                this.graphLabel = response.data;
+                console.log(this.graphLabel);
+                this.flagGraph = true;
+            }
+            catch{
+                setTimeout(this.flagGraph = false,10000);
+            } 
+        }                
     }
 }
 </script>

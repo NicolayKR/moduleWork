@@ -3,7 +3,32 @@ import { Line } from 'vue-chartjs'
 
 export default {
   extends: Line,
-  props: ['chartdata', 'options'],
+  props: {
+      dataSet:{
+            default:()=>{}
+        }, 
+        label:{
+            default:()=>[]
+        }
+  },
+  data: () => ({
+    chartdata: {
+      labels: this.label,
+      datasets: this.dataSet,
+    },
+    options: {
+            elements:{
+                line:{
+                    tension:0,
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+  }),
   mounted () {
     this.renderChart(this.chartdata, this.options)
   }

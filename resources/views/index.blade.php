@@ -9,15 +9,11 @@
 </head>
 <body>
     <div id="app">
-    <div class="container">
-        <canvas id="canvas"></canvas>
-    </div>
         <div class="container">
             <example-component></example-component>
         </div>
     </div>
-   
-    
+
     <script src="./js/app.js"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
