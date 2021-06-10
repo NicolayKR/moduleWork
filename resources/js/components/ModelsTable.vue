@@ -18,8 +18,9 @@
                 </tbody>
             </table>
             
-        </div>
+            <graph :/>
 
+        </div>
         <div v-else>
             <b-alert show variant="success" class=error__block>
                 Мы пытаемся соедениться с базой данных
@@ -32,13 +33,13 @@
 </template>
 
 <script>
-import { Line } from 'vue-chartjs'
-import Graph from './Graph'
+import graph from './Graph'
+
 
 export default {
-    component: {
-        Graph
-    }
+    components: {
+        graph
+    },
     data() {
         return {
             modelsData:[],
@@ -56,49 +57,6 @@ export default {
                 //console.log(response); 
                 this.modelsData = response.data;
                 console.log(this.modelsData);
-
-                var ctx = document.getElementById('canvas').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: label,
-                        // for()
-                        datasets:  [{
-                            label: '# of Votes',
-                            data: [12, 19, 3, 5, 2, 3],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        elements:{
-                            line:{
-                                tension:0,
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-
                 this.flagTable = true;
                 }
                 catch{
