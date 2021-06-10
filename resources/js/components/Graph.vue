@@ -11,26 +11,28 @@ export default {
             default:()=>[]
         }
   },
-  data: () => ({
-    chartdata: {
-      labels: this.label,
-      datasets: this.dataSet,
-    },
-    options: {
-            elements:{
-                line:{
-                    tension:0,
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true
+  data(){
+      return {
+        chartdata: {
+            labels: this.label,
+            datasets: this.dataSet,
+        },
+        options: {
+                elements:{
+                    line:{
+                        tension:0,
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
         }
-  }),
-  mounted () {
-    this.renderChart(this.chartdata, this.options)
-  }
+    },
+    mounted () {
+        this.renderChart(this.chartdata, this.options)
+    }
 }
 </script>

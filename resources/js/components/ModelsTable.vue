@@ -18,7 +18,7 @@
                 </tbody>
             </table>
             
-            <graph :dataSet="graphData" :label ="graphLabel"/>
+            <graph :chart-data="datacollection"/>
 
         </div>
         <div v-else>
@@ -45,6 +45,7 @@ export default {
             modelsData:[],
             graphData: [],
             graphLabel: [],
+            datacollection: null,
             flagTable: false
         }
     },
@@ -52,6 +53,7 @@ export default {
         this.getModules();
         this.getGraphData(); 
         this.getGraphLabel(); 
+        this.fillData()
     },
     methods:{
         async getModules(){
@@ -89,7 +91,13 @@ export default {
             catch{
                 setTimeout(this.flagGraph = false,10000);
             } 
-        }                
+        } ,
+        fillData() {
+            this.datacollection = {
+                labels: graphLabel,
+                datasets: graphData,
+            }              
+        }
     }
 }
 </script>
