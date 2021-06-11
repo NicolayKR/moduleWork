@@ -16,7 +16,7 @@
                                 <span 
                                 class = "modules_colorline"
                                 :style="{'background-color': models_item.borderColor}"
-                                :class="{ modules_colorline_inactive: clickedSpan}" 
+                                :class="{ modules_colorline_inactive: span_item.selected}" 
                                 @click="spanMovie" 
                                 ></span>
                             </div>
@@ -53,6 +53,9 @@ export default {
         return {
             modelsData:[],
             clickedSpan: false,
+            span_item:{
+                 selected: undefined,
+            },
             datacollection: {
                 labels: [],
                 datasets: []
@@ -93,9 +96,8 @@ export default {
             },
         spanMovie(event){
             console.log(event.target);
-            console.log("Coll");
-            this.clickedSpan = !this.clickedSpan;
-            console.log(this.clickedSpan);
+            this.span_item.selected = !this.span_item.selected;
+            console.log(this.span_item.selected);
         }
         }
 }
@@ -128,7 +130,7 @@ export default {
         background-color: red;
         padding-left: 20px;
         &_inactive{
-            background-color: white;
+            background-color: aliceblue !important;
         }
     }
 }
