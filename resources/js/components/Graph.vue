@@ -4,35 +4,47 @@ import { Line } from 'vue-chartjs'
 export default {
   extends: Line,
   props: {
-      dataSet:{
+        chartData:{
             default:()=>{}
         }, 
-        label:{
-            default:()=>[]
-        }
   },
   data(){
       return {
-        chartdata: {
-            labels: this.label,
-            datasets: this.dataSet,
-        },
-        options: {
-                elements:{
-                    line:{
-                        tension:0,
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+         option: { 
+            legend: {
+                display: false,
+            },
+            elements:{
+                line:{
+                    tension:0,
                 }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            responseive : true , 
+            keepAspectRatio : false , 
+            animation : { 
+                duration : 0 
+            } , 
+            hover : { 
+                animationDuration : 0 
+                }, 
+            responseiveAnimationDuration : 0 
             }
         }
     },
+    watch: {
+        chartData () {
+            this.$data._chart.update()
+        }
+    },
     mounted () {
-        this.renderChart(this.chartdata, this.options)
+        this.renderChart(this.chartData, this.option);
+    },
+    methods:{
     }
 }
 </script>

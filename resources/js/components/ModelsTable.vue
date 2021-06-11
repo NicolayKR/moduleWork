@@ -10,16 +10,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for ="models_item in modelsData">
-                        <td>{{models_item.name}}</td>
+                    <tr v-for ="(models_item,index) in modelsData">
+                        <td class = "modules">
+                            <div class=modules_color-wrapper><span class="modules_colorline" :style="{'background-color': models_item.borderColor}"></span></div>
+                            <div class="modules_name">{{models_item.name}}</div>
+                        </td>
                         <td>{{models_item.price}}</td>
                         <td>{{models_item.current_downloads}}</td>
                     </tr>
                 </tbody>
             </table>
-            
-            <graph :chart-data="datacollection"/>
-
+            <div v-if="flagGraph">
+                <graph :chartData ="this.datacollection"/>
+            </div>
         </div>
         <div v-else>
             <b-alert show variant="success" class=error__block>
@@ -35,7 +38,6 @@
 <script>
 import graph from './Graph'
 
-
 export default {
     components: {
         graph
@@ -43,62 +45,45 @@ export default {
     data() {
         return {
             modelsData:[],
-            graphData: [],
-            graphLabel: [],
-            datacollection: null,
-            flagTable: false
+            datacollection: {
+                labels: [],
+                datasets: []
+            },
+            datacollection_current: {
+                labels: [],
+                datasets: []
+            },
+            flagTable: false,
+            flagGraph: false
         }
     },
     async mounted(){
-        this.getModules();
-        this.getGraphData(); 
-        this.getGraphLabel(); 
-        this.fillData()
+        this.getModules()
     },
     methods:{
         async getModules(){
             try{
-                const response = await axios.get(`/getModels`) 
-                //console.log(response); 
+                const response = await axios.get(`/getModels`);
                 this.modelsData = response.data;
-                console.log(this.modelsData);
+                for(var key in this.modelsData) {
+                    var current_dataset ={}
+                    current_dataset.label = this.modelsData[key].name;
+                    current_dataset.data = this.modelsData[key].downloads;
+                    current_dataset.borderColor = this.modelsData[key].borderColor;
+                    current_dataset.backgroundColor = this.modelsData[key].backgroundColor;
+                    current_dataset.borderWidth = this.modelsData[key].borderWidth;
+                    this.datacollection.labels = Array.from(new Set(this.datacollection.labels.concat(this.modelsData[key].dates)));
+                    this.datacollection.datasets.push(current_dataset);
+                }   
                 this.flagTable = true;
+                this.flagGraph = true;
                 }
                 catch{
-                    setTimeout(this.flagTable = false,10000);
+                    this.flagTable = false;
+                    this.flagGraph = false;
                 }                            
         },
-        async getGraphData(){
-            try{
-                const response = await axios.get(`/getGraphData`) 
-                //console.log(response); 
-                this.graphData = response.data;
-                console.log(this.graphData);
-                this.flagGraph = true;
-            }
-            catch{
-                setTimeout(this.flagGraph = false,10000);
-            } 
-        } ,
-        async getGraphLabel(){
-            try{
-                const response = await axios.get(`/getGraphLabel`) 
-                //console.log(response); 
-                this.graphLabel = response.data;
-                console.log(this.graphLabel);
-                this.flagGraph = true;
-            }
-            catch{
-                setTimeout(this.flagGraph = false,10000);
-            } 
-        } ,
-        fillData() {
-            this.datacollection = {
-                labels: graphLabel,
-                datasets: graphData,
-            }              
         }
-    }
 }
 </script>
 
@@ -110,5 +95,24 @@ export default {
 }
 .text-success{
     margin-left: 20px;
+}
+.modules{
+    display:flex;
+    position: relative;
+    &_color-wrapper{
+        max-width: 50px;
+        top: 50%;
+        transform: translateY(50%);
+    }
+    &_name{
+        margin-left: 30px;
+        }
+    &_colorline{
+        display: block;
+        height: 6px;
+        width: 30px;
+        background-color: red;
+        padding-left: 20px;
+    }
 }
 </style>
