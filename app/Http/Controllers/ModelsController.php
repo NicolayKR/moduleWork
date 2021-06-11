@@ -16,6 +16,7 @@ class ModelsController extends Controller
         $collection = Competitor::select('name','id','price','downloads')->orderBy('downloads', 'desc')->get();
         foreach ($collection as  $value) {
             $array_data[$value['id']]['name'] = $value['name'];
+            $array_data[$value['id']]['id'] = $value['id'];
             $array_data[$value['id']]['current_downloads'] = $value['downloads'];
             $array_data[$value['id']]['price'] = $value['price'];
         }

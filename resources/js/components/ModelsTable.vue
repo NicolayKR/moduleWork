@@ -1,25 +1,23 @@
 <template>
     <div class="wrapp">
         <div v-if="flagTable">
-            <table class="table table-dark">
+            <table class="table">
                 <thead>
                     <tr>
-                        <th style="width: 70%">Название модуля</th>
-                        <th style="width: 15%">Платно</th>
-                        <th style="width: 15%">Скачиваний</th>
+                        <th scope="col" style="width: 70%">Название модуля</th>
+                        <th scope="col" style="width: 15%">Платно</th>
+                        <th scope="col" style="width: 15%">Скачиваний</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for ="(models_item,index) in modelsData">
                         <td class = "modules">
-                            <div class=modules_color-wrapper>
                                 <span 
                                 class = "modules_colorline"
                                 :style="{'background-color': models_item.borderColor}"
-                                :class="{ modules_colorline_inactive: span_item.selected}" 
+                                
                                 @click="spanMovie" 
                                 ></span>
-                            </div>
                             <div class="modules_name">{{models_item.name}}</div>
                         </td>
                         <td>{{models_item.price}}</td>
@@ -95,15 +93,20 @@ export default {
                 }                            
             },
         spanMovie(event){
-            console.log(event.target);
-            this.span_item.selected = !this.span_item.selected;
-            console.log(this.span_item.selected);
-        }
+            // console.log(event.target);
+            event.target.classList.toggle('modules_colorline_inactive');
+            }
         }
 }
 </script>
 
 <style lang="scss" scoped>
+.table th, .table td {
+    border-top: none !important;
+}
+.table td{
+    border-bottom-width: 0px;
+}
 .error__block{
     margin-top: 100px;
     text-align: center;
@@ -118,19 +121,23 @@ export default {
     &_color-wrapper{
         max-width: 50px;
         top: 50%;
-        transform: translateY(50%);
+        transform: translateY(0%);
     }
     &_name{
-        margin-left: 30px;
+        margin-left: 50px;
         }
     &_colorline{
         display: block;
-        height: 6px;
+        position: absolute;
+        height: 30px;
         width: 30px;
-        background-color: red;
         padding-left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
         &_inactive{
             background-color: aliceblue !important;
+            border: 2px solid;
+            border-color: black;
         }
     }
 }
