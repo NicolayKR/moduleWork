@@ -12,7 +12,14 @@
                 <tbody>
                     <tr v-for ="(models_item,index) in modelsData">
                         <td class = "modules">
-                            <div class=modules_color-wrapper><span class="modules_colorline" :style="{'background-color': models_item.borderColor}"></span></div>
+                            <div class=modules_color-wrapper>
+                                <span 
+                                class = "modules_colorline"
+                                :style="{'background-color': models_item.borderColor}"
+                                :class="{ modules_colorline_inactive: clickedSpan}" 
+                                @click="spanMovie" 
+                                ></span>
+                            </div>
                             <div class="modules_name">{{models_item.name}}</div>
                         </td>
                         <td>{{models_item.price}}</td>
@@ -45,6 +52,7 @@ export default {
     data() {
         return {
             modelsData:[],
+            clickedSpan: false,
             datacollection: {
                 labels: [],
                 datasets: []
@@ -82,7 +90,13 @@ export default {
                     this.flagTable = false;
                     this.flagGraph = false;
                 }                            
-        },
+            },
+        spanMovie(event){
+            console.log(event.target);
+            console.log("Coll");
+            this.clickedSpan = !this.clickedSpan;
+            console.log(this.clickedSpan);
+        }
         }
 }
 </script>
@@ -113,6 +127,10 @@ export default {
         width: 30px;
         background-color: red;
         padding-left: 20px;
+        &_inactive{
+            background-color: white;
+        }
     }
 }
+
 </style>

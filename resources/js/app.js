@@ -1,4 +1,5 @@
 require('./bootstrap');
+require('./span');
 //require('./graph');
 
 window.Vue = require('vue').default;
