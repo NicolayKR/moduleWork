@@ -49,7 +49,6 @@ export default {
     data() {
         return {
             modelsData:[],
-            clickedSpan: false,
             span_item:{
                  selected: undefined,
             },
@@ -93,6 +92,7 @@ export default {
             },
         spanMovie(index){
             console.log(index);
+           
             event.target.classList.toggle('modules_colorline_inactive');
             }
         }
