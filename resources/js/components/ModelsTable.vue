@@ -12,12 +12,12 @@
                 <tbody>
                     <tr v-for ="(models_item,index) in modelsData">
                         <td class = "modules">
-                                <span 
-                                class = "modules_colorline"
-                                :style="{'background-color': models_item.borderColor}"
-                                
-                                @click="spanMovie" 
-                                ></span>
+                            <span 
+                            class = "modules_colorline"
+                            :style="{'background-color': models_item.borderColor}"
+                            
+                            @click="spanMovie" 
+                            ></span>
                             <div class="modules_name">{{models_item.name}}</div>
                         </td>
                         <td>{{models_item.price}}</td>
