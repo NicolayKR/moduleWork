@@ -15,8 +15,7 @@
                             <span 
                             class = "modules_colorline"
                             :style="{'background-color': models_item.borderColor}"
-                            
-                            @click="spanMovie" 
+                            @click="spanMovie(index)" 
                             ></span>
                             <div class="modules_name">{{models_item.name}}</div>
                         </td>
@@ -92,8 +91,8 @@ export default {
                     this.flagGraph = false;
                 }                            
             },
-        spanMovie(event){
-            // console.log(event.target);
+        spanMovie(index){
+            console.log(index);
             event.target.classList.toggle('modules_colorline_inactive');
             }
         }
