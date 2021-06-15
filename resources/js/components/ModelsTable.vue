@@ -1,6 +1,12 @@
 <template>
     <div class="wrapp">
         <div v-if="flagTable">
+            <div v-if="flagGraph" class="graphWrapper">
+                <div class = "graph_title">Статистика скачиваний</div>
+                <div style="margin-top: 20px;">
+                    <graph height="600" :chartData ="datacollection" :selected="selected" />
+                </div>
+            </div>
             <table class="table">
                 <thead>
                     <tr>
@@ -24,9 +30,6 @@
                     </tr>
                 </tbody>
             </table>
-            <div v-if="flagGraph">
-                <graph :chartData ="this.datacollection"/>
-            </div>
         </div>
         <div v-else>
             <b-alert show variant="success" class=error__block>
@@ -44,7 +47,7 @@ import graph from './Graph'
 
 export default {
     components: {
-        graph
+        graph,
     },
     data() {
         return {
@@ -56,32 +59,25 @@ export default {
                 labels: [],
                 datasets: []
             },
-            datacollection_current: {
+            current_datacollection: {
                 labels: [],
                 datasets: []
             },
+            selected: [],
             flagTable: false,
-            flagGraph: false
+            flagGraph: false,
         }
     },
+    
     async mounted(){
-        this.getModules()
+        this.getModules();   
     },
     methods:{
         async getModules(){
             try{
                 const response = await axios.get(`/getModels`);
                 this.modelsData = response.data;
-                for(var key in this.modelsData) {
-                    var current_dataset ={}
-                    current_dataset.label = this.modelsData[key].name;
-                    current_dataset.data = this.modelsData[key].downloads;
-                    current_dataset.borderColor = this.modelsData[key].borderColor;
-                    current_dataset.backgroundColor = this.modelsData[key].backgroundColor;
-                    current_dataset.borderWidth = this.modelsData[key].borderWidth;
-                    this.datacollection.labels = Array.from(new Set(this.datacollection.labels.concat(this.modelsData[key].dates)));
-                    this.datacollection.datasets.push(current_dataset);
-                }   
+                this.getDateFromGraph();  
                 this.flagTable = true;
                 this.flagGraph = true;
                 }
@@ -91,11 +87,41 @@ export default {
                 }                            
             },
         spanMovie(index){
-            console.log(index);
-           
             event.target.classList.toggle('modules_colorline_inactive');
-            }
+            for (var key in this.selected) {
+                if(this.selected[key].name == this.current_datacollection.datasets[Number(index)-1].label && this.selected[key].checked == true ){
+                    this.selected[key].checked = false;
+                }
+                else(this.selected[key].checked = true);
+                }
+            },
+        getDateFromGraph(){
+            for(var key in this.modelsData) {
+                    var current_dataset ={};
+                    var checked_dataset ={};
+                    current_dataset.label = this.modelsData[key].name;
+                    current_dataset.data = this.modelsData[key].downloads;
+                    current_dataset.borderColor = this.modelsData[key].borderColor;
+                    //current_dataset.backgroundColor = this.modelsData[key].backgroundColor;
+                    this.modelsData[key].backgroundColor.forEach(function(item) {
+                        current_dataset.backgroundColor = item.replace(")",",0.4)");
+                    });
+                    current_dataset.borderWidth = this.modelsData[key].borderWidth;
+                    current_dataset.hidden = false;
+                    current_dataset.pointBackgroundColor = this.modelsData[key].pointBackgroundColor;
+                    checked_dataset.name = this.modelsData[key].name;
+                    checked_dataset.checked = true;
+                    checked_dataset.id = this.modelsData[key].id;
+                    this.selected.push(checked_dataset);
+                    this.datacollection.labels = Array.from(new Set(this.datacollection.labels.concat(this.modelsData[key].dates)));
+                    this.datacollection.datasets.push(current_dataset);
+                }
+            console.log(this.datacollection);
+            this.current_datacollection = this.datacollection;
         }
+        
+    },
+        
 }
 </script>
 
@@ -140,5 +166,14 @@ export default {
         }
     }
 }
-
+.graphWrapper{
+    margin-top: 20px;
+    min-height: 600px;
+}
+.graph_title{
+    width: 100%;
+    text-align: center;
+    font-size: 2rem !important;
+    color:black;
+}
 </style>
