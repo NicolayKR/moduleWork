@@ -20,18 +20,12 @@ export default {
             legend: {
                 display: false,
             },
-            elements:{
-                line:{
-                    tension:0,
-                }
-            },
             scales: {
-                y: {
-                    beginAtZero: true
-                    }
-                },
-            responseive : false , 
+                xAxes: [{ticks: {fontSize: 14, fontFamily: "'Roboto'", fontColor: '#000', fontStyle: '500'}}]
+            },
+            responseive : true ,
             maintainAspectRatio : false , 
+            bezierCurve : false,
             animation : { 
                 duration : 500
             } , 
@@ -43,7 +37,7 @@ export default {
         }
     },
     mounted () {
-        this.renderChart(this.currentData, this.option);
+        this.updateGraphData();
         this.selectedWatcher = this.$watch('selected', this.updateChart, {
             deep: true
         });
@@ -60,6 +54,10 @@ export default {
                 })
             }
             this.$data._chart.update()
+        },
+        updateGraphData(){
+            this.renderChart(this.currentData, this.option);
+            this.updateChart();
         }
     }
 }
