@@ -1,54 +1,97 @@
-// var xmlhttp = new XMLHttpRequest();
-// var url = "/getGraphData";
-// xmlhttp.open("GET", url, true);
-// xmlhttp.send();
-// xmlhttp.onreadystatechange = function(){
-//     if(this.readyState== 4 && this.status == 200){
-//         var data = JSON.parse(this.responseText);
-//         var dataSet =[];
-//         var dates = [];
-//         for(var key in data) {
-//             dates = Array.from(new Set(dates.concat(data[key].dates)))
-//             var currentData ={}
-//             //Название Линии
-//             currentData.label = data[key].name;
-//             //Количество скачиваний
-//             currentData.data = data[key].downloads;
-//             //Рандомный цвет
-//             r = Math.floor(Math.random() * (256)),
-//             g = Math.floor(Math.random() * (256)),
-//             b = Math.floor(Math.random() * (256)),
-//             currentData.borderColor = '#' + r.toString(16) + g.toString(16) + b.toString(16);
-//             //
-//             currentData.backgroundColor = 'transparent'; 
-//             currentData.borderWidth = 2;
-//             dataSet.push(currentData);
-//         };
-        
-//         plottingGraph(dates,dataSet);
-//     }
-// }
+import graph from './Graph';
 
-// function plottingGraph(label, dataSets){
-//     var ctx = document.getElementById('canvas').getContext('2d');
-//     var myChart = new Chart(ctx, {
-//         type: 'line',
-//         data: {
-//             labels: label,
-//             // for()
-//             datasets: dataSets
-//         },
-//         options: {
-//             elements:{
-//                 line:{
-//                     tension:0,
-//                 }
-//             },
-//             scales: {
-//                 y: {
-//                     beginAtZero: true
-//                 }
-//             }
-//         }
-//     });
-// }
+export default {
+    components: {
+        graph,
+    },
+    data() {
+        return {
+            modelsData:[],
+            span_item:{
+                 selected: undefined,
+            },
+            datacollection: {
+                labels: [],
+                datasets: []
+            },
+            current_datacollection: {
+                labels: [],
+                datasets: []
+            },
+            selected: [],
+            flagTable: false,
+            flagGraph: false,
+        }
+    },
+    
+    async mounted(){
+        this.fillData();
+    },
+    methods:{
+        async getModules(){
+            try{
+                const response = await axios.get(`/getModels`);
+                this.modelsData = response.data;
+                this.getDateFromGraph();  
+                this.flagTable = true;
+                this.flagGraph = true;
+                }
+                catch{
+                    this.flagTable = false;
+                    this.flagGraph = false;
+                }                            
+            },
+        spanMovie(index){
+            // event.target.classList.toggle('modules_colorline_inactive');
+            for (var key in this.selected) {
+                if(this.selected[key].name == this.current_datacollection.datasets[Number(index)].label){
+                    this.selected[key].checked = !this.selected[key].checked;
+                    this.setCurrentSelected();
+                    }
+                }
+            },
+        getDateFromGraph(){
+            for(var key in this.modelsData) {
+                    var current_dataset ={};
+                    var checked_dataset ={};
+                    current_dataset.label = this.modelsData[key].name;
+                    current_dataset.data = this.modelsData[key].downloads;
+                    current_dataset.borderColor = this.modelsData[key].borderColor;
+                    //current_dataset.backgroundColor = this.modelsData[key].backgroundColor;
+                    this.modelsData[key].backgroundColor.forEach(function(item) {
+                        current_dataset.backgroundColor = item.replace(")",",0.4)");
+                    });
+                    current_dataset.borderWidth = this.modelsData[key].borderWidth;
+                    current_dataset.hidden = false;
+                    current_dataset.pointBackgroundColor = this.modelsData[key].pointBackgroundColor;
+                    if(!localStorage.selected){
+                        checked_dataset.name = this.modelsData[key].name;
+                        checked_dataset.checked = true;
+                        checked_dataset.id = this.modelsData[key].id;
+                        this.selected.push(checked_dataset);
+                    }
+                    this.datacollection.labels = Array.from(new Set(this.datacollection.labels.concat(this.modelsData[key].dates)));
+                    this.datacollection.datasets.push(current_dataset);
+                }
+            this.current_datacollection = this.datacollection;
+        },
+        setCurrentSelected(){
+            localStorage.setItem ("selected", JSON.stringify(this.selected));
+        },
+        setSelected(){
+            if(localStorage.selected){
+                this.selected = JSON.parse (localStorage.getItem("selected"));
+            }
+            else{
+                this.setCurrentSelected();
+            }
+        },
+        fillData(){
+            (async () => {
+                await this.getModules();
+                await this.setSelected();
+                })()
+        }
+        
+    },      
+};

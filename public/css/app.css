@@ -1,2 +1,26 @@
 @import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap);
+.graphWrapper {
+  padding: 10px 34px;
+  min-height: 600px;
+  background-color: white;
+  box-shadow: 0 2px 10px 0 #d9dee8;
+}
 
+.graph_title {
+  padding-top: 15px;
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+  text-align: center;
+  font-size: 29px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #36353a;
+}
+
+.container {
+  max-width: 1540px;
+}

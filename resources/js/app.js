@@ -1,4 +1,5 @@
 require('./bootstrap');
+//require('./graph');
 
 window.Vue = require('vue').default;
 import  BootstrapVue from 'bootstrap-vue';
