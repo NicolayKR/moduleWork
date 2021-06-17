@@ -21,7 +21,7 @@ export default {
                 display: false,
             },
             scales: {
-                xAxes: [{ticks: {fontSize: 13, fontFamily: "'Roboto', sans-serif", fontColor: '#000', fontStyle: '500'}}]
+                xAxes: [{ticks: {fontFamily: "'Roboto', sans-serif", fontColor: '#000', fontStyle: '500'}}]
             },
             responseive : false ,
             maintainAspectRatio : false , 

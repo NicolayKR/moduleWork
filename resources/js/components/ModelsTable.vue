@@ -5,7 +5,7 @@
                 <div v-if="flagGraph" class="graph">
                     <div class = "graph_title">Статистика скачиваний</div>
                     <div class = "graph_wrapper">
-                        <graph height="600" :chartData ="datacollection" :selected="selected" />
+                        <graph :chartData ="datacollection" :selected="selected" />
                     </div>
                 </div>
                 <div class="table">
@@ -257,7 +257,7 @@ tbody tr:hover {
 }
 .graph{
     padding: 10px 34px;
-    min-height: 600px;
+    min-height: 500px;
     background-color: white;
     box-shadow: 0 2px 10px 0 #d9dee8;
     &_title{
@@ -276,6 +276,8 @@ tbody tr:hover {
     }
     &_wrapper{
         margin-top: 10px;
+        min-width: 120px;
+        min-height: 150px;
     }
 }
 
@@ -292,18 +294,37 @@ tbody tr:hover {
         width: 100% !important;
         font-size: 11px;
         display: none;
+        &:first-child {
+            display: block;
+        }
     }
     .table td{
         font-size: 12px;
         display: block;
         &:first-child {
-            background: #f1f1f1;
+            background: #f2f2f3;
         }
     }
     .modules{
         &_name{
             text-align: center;
         }
+    }
+}
+@media( max-width: 590px ){
+    .graph{
+        &_title{
+            font-size: 20px;
+        }
+        &_wrapper{
+            margin-top: 20px;
+        }
+    }
+}
+@media( max-width: 325px ){
+    .table{
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }
 </style>
