@@ -37,7 +37,7 @@
             </div>
             <div v-else>
                 <b-alert show variant="success" class=error__block>
-                    Мы пытаемся соедениться с базой данных
+                    <span>Мы пытаемся соедениться с базой данных</span>
                     <div class="spinner-border text-success" role="status">
                         <span class="sr-only">Loading...</span>
                     </div>
@@ -212,7 +212,6 @@ tbody tr:hover {
     color: #1a1a1a;
 }
 .error__block{
-    margin-top: 100px;
     margin: 30% auto;
     text-align: center;
     width: 50%;
@@ -280,7 +279,16 @@ tbody tr:hover {
         min-height: 150px;
     }
 }
-
+@media( max-width:905px ) {
+    .error__block{
+        .text-success{
+            margin-left: 0;
+        }
+        span{
+            display: none;
+        }
+    }
+}
 @media( max-width: 767px ){
     .graph_title{
         font-size: 24px;
@@ -320,8 +328,16 @@ tbody tr:hover {
             margin-top: 20px;
         }
     }
+    .error__block{
+        margin: 70% auto;
+    }
 }
 @media( max-width: 325px ){
+    .graph{
+        &_title{
+            font-size: 18px;
+        }
+    }
     .table{
         padding-left: 10px;
         padding-right: 10px;
