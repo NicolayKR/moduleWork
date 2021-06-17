@@ -23,7 +23,7 @@ export default {
             scales: {
                 xAxes: [{ticks: {fontSize: 13, fontFamily: "'Roboto', sans-serif", fontColor: '#000', fontStyle: '500'}}]
             },
-            responseive : true ,
+            responseive : false ,
             maintainAspectRatio : false , 
             bezierCurve : false,
             animation : { 
