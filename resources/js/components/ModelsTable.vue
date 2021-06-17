@@ -335,7 +335,7 @@ tbody tr:hover {
 @media( max-width: 325px ){
     .graph{
         &_title{
-            font-size: 18px;
+            font-size: 16px;
         }
     }
     .table{
