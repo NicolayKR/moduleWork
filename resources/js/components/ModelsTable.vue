@@ -2,14 +2,14 @@
     <div class="wrapp">
         <div class="container">
             <div v-if="flagTable">
-                <div v-if="flagGraph" class="graphWrapper">
+                <div v-if="flagGraph" class="graph">
                     <div class = "graph_title">Статистика скачиваний</div>
-                    <div style="margin-top: 10px;">
-                        <graph height="600" :chartData ="datacollection" :selected="selected" />
+                    <div class = "graph_wrapper">
+                        <graph :chartData ="datacollection" :selected="selected" :windowWidth="windowWidth"/>
                     </div>
                 </div>
-                <div class="table_wrapp">
-                    <table class="table">
+                <div class="table">
+                    <table class="table_wrapp">
                         <thead>
                             <tr>
                                 <th scope="col" style="width: 70%">Название модуля</th>
@@ -37,7 +37,7 @@
             </div>
             <div v-else>
                 <b-alert show variant="success" class=error__block>
-                    Мы пытаемся соедениться с базой данных
+                    <span>Мы пытаемся соедениться с базой данных</span>
                     <div class="spinner-border text-success" role="status">
                         <span class="sr-only">Loading...</span>
                     </div>
@@ -49,7 +49,6 @@
 
 <script>
 import graph from './Graph'
-
 export default {
     components: {
         graph,
@@ -57,9 +56,7 @@ export default {
     data() {
         return {
             modelsData:[],
-            span_item:{
-                 selected: undefined,
-            },
+            windowWidth: window.innerWidth,
             datacollection: {
                 labels: [],
                 datasets: []
@@ -76,6 +73,9 @@ export default {
     
     async mounted(){
         this.fillData();
+        window.onresize = () => {
+            this.windowWidth = window.innerWidth
+        }
     },
     methods:{
         async getModules(){
@@ -147,3 +147,4 @@ export default {
         
 }
 </script>
+

@@ -10,6 +10,9 @@ export default {
         selected: {
             type: Array,
             default: [],
+        },
+        windowWidth:{
+            default: null
         }
   },
   data(){
@@ -21,10 +24,25 @@ export default {
                 display: false,
             },
             scales: {
-                xAxes: [{ticks: {fontSize: 13, fontFamily: "'Roboto', sans-serif", fontColor: '#000', fontStyle: '500'}}]
+                xAxes: [{
+                    display: true,
+                    ticks: { 
+                        fontFamily: "'Roboto', sans-serif", 
+                        fontColor: '#000'
+                    }
+                }],
+                yAxes: [{
+                    ticks: {                        
+                        fontFamily: "'Roboto', sans-serif", 
+                        fontColor: '#000'                           
+                    }
+                }]
+            },
+            tooltip:{
+                bodyFontSize: 12
             },
             responseive : true ,
-            maintainAspectRatio : false , 
+            maintainAspectRatio : false ,
             bezierCurve : false,
             animation : { 
                 duration : 500
@@ -56,6 +74,10 @@ export default {
             this.$data._chart.update()
         },
         updateGraphData(){
+            if(this.windowWidth < 524){
+                this.option.scales.xAxes[0].ticks.fontSize =  8;
+                this.option.tooltips = false;
+            };
             this.renderChart(this.currentData, this.option);
             this.updateChart();
         }
