@@ -38,10 +38,10 @@ export default {
                     }
                 }]
             },
-            tooltip:{
+            tooltips :{
+                display: true,
                 bodyFontSize: 12
             },
-            tooltips : true,
             responseive : true ,
             maintainAspectRatio : false ,
             bezierCurve : false,
