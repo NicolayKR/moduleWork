@@ -62,16 +62,14 @@
     }
 }
 @media( max-width: 420px ){
-    .table{
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-}
-@media( max-width: 360px ){
     .graph{
         &_title{
             font-size: 14px;
         }
+    }
+    .table{
+        padding-left: 10px;
+        padding-right: 10px;
     }
     .table th {
         font-size: 10px;
