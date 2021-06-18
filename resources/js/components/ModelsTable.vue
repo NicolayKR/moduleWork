@@ -3,7 +3,7 @@
         <div class="container">
             <div v-if="flagTable">
                 <div v-if="flagGraph" class="graph">
-                    <div class = "graph_title">Статистика скачиваний</div>
+                    <div class = "graph_title">Статистика скачиваний <br>(5 дней)<br></div>
                     <div class = "graph_wrapper">
                         <graph :chartData ="datacollection" :selected="selected" :windowWidth="windowWidth"/>
                     </div>

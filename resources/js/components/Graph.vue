@@ -75,7 +75,7 @@ export default {
         },
         updateGraphData(){
             if(this.windowWidth < 524){
-                this.option.scales.xAxes[0].ticks.fontSize =  8;
+                this.option.scales.xAxes[0].ticks.fontSize =  9;
                 this.option.tooltips = false;
             };
             this.renderChart(this.currentData, this.option);
