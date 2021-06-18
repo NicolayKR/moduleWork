@@ -241,3 +241,6 @@ tbody tr:hover {
     text-align: start;
   }
 }
+.container {
+  max-width: 1540px !important;
+}

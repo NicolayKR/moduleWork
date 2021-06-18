@@ -41,6 +41,7 @@ export default {
             tooltip:{
                 bodyFontSize: 12
             },
+            tooltips : true,
             responseive : true ,
             maintainAspectRatio : false ,
             bezierCurve : false,
