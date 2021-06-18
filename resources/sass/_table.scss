@@ -4,6 +4,7 @@
     background-color: #f2f2f3;
     }
 .table {
+<<<<<<< HEAD
     margin-top:10px;
     padding-left:34px;
     padding-right:34px;
@@ -19,6 +20,18 @@
         margin-bottom: 0;
         background-color: white;
         width: 100%;
+=======
+    margin-top: 10px;
+    margin-bottom: 0;
+    background-color: white;
+    &_wrapp{
+        margin-top:10px;
+        padding-left:34px;
+        padding-right:34px;
+        padding-top:10px;
+        background-color: white;
+        box-shadow: 0 2px 10px 0 #d9dee8;
+>>>>>>> f47bde4d1a391595e2674c69b85b346f71dd8359
     }
 }
 .table th {
@@ -57,6 +70,10 @@ tbody tr:hover {
     color: #1a1a1a;
 }
 .error__block{
+<<<<<<< HEAD
+=======
+    margin-top: 100px;
+>>>>>>> f47bde4d1a391595e2674c69b85b346f71dd8359
     margin: 30% auto;
     text-align: center;
     width: 50%;
@@ -66,6 +83,10 @@ tbody tr:hover {
     margin-left: 20px;
 }
 .modules{
+<<<<<<< HEAD
+=======
+    display:flex;
+>>>>>>> f47bde4d1a391595e2674c69b85b346f71dd8359
     position: relative;
     &_color-wrapper{
         max-width: 50px;

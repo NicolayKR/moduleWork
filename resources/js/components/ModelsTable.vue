@@ -5,7 +5,11 @@
                 <div v-if="flagGraph" class="graph">
                     <div class = "graph_title">Статистика скачиваний</div>
                     <div class = "graph_wrapper">
+<<<<<<< HEAD
                         <graph :chartData ="datacollection" :selected="selected" :windowWidth="windowWidth"/>
+=======
+                        <graph :chartData ="datacollection" :selected="selected" />
+>>>>>>> f47bde4d1a391595e2674c69b85b346f71dd8359
                     </div>
                 </div>
                 <div class="table">
@@ -148,3 +152,202 @@ export default {
 }
 </script>
 
+<<<<<<< HEAD
+=======
+<style scoped lang ="scss">
+
+.container{
+    max-width: 1540px;
+}
+.wrapp{
+    min-height: 100vh;
+    padding: 15px;
+    background-color: #f2f2f3;
+    }
+.table {
+    margin-top:10px;
+    padding-left:34px;
+    padding-right:34px;
+    padding-top:10px;
+    background-color: white;
+    box-shadow: 0 2px 10px 0 #d9dee8;
+    margin-top: 10px;
+    margin-bottom: 0;
+    background-color: white;
+    width: 100%;
+    &_wrapp{
+        margin-top: 10px;
+        margin-bottom: 0;
+        background-color: white;
+        width: 100%;
+    }
+}
+.table th {
+    padding: 20px ;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: normal;
+    color: #333333;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 2px solid #3f4b86 !important;
+    border-top: none !important;
+}
+.table .tr{
+    border-bottom-width: 1px !important;
+}
+tbody tr:hover {
+    background: #eef4ff; 
+   }
+.table td{
+    border-bottom-width: 0px;
+    border-bottom-width: 1px !important;
+    padding: 24px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #1a1a1a;
+}
+.error__block{
+    margin: 30% auto;
+    text-align: center;
+    width: 50%;
+    font-weight: 600;
+}
+.text-success{
+    margin-left: 20px;
+}
+.modules{
+    position: relative;
+    &_color-wrapper{
+        max-width: 50px;
+        top: 50%;
+        transform: translateY(0%);
+    }
+    &_name{
+        margin-left: 50px;
+        margin-left: 47px;
+        text-align: start;
+        }
+    &_colorline{
+        display: block;
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        padding-left: 20px;
+        height: 24px;
+        width: 24px;
+        padding-left: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 2px;
+        border: solid 2px #3f4b86;
+        &_inactive{
+            background-color: aliceblue !important;
+            border: 2px solid;
+            border-color: black;
+            border-radius: 2px;
+            border: solid 2px #3f4b86;
+        }
+    }
+}
+.graph{
+    padding: 10px 34px;
+    min-height: 500px;
+    background-color: white;
+    box-shadow: 0 2px 10px 0 #d9dee8;
+    &_title{
+        padding-top:15px;
+        font-family: 'Roboto', sans-serif;
+        width: 100%;
+        text-align: center;
+        font-size: 29px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #36353a;
+    }
+    &_wrapper{
+        margin-top: 10px;
+        min-width: 120px;
+        min-height: 150px;
+    }
+}
+@media( max-width:905px ) {
+    .error__block{
+        .text-success{
+            margin-left: 0;
+        }
+        span{
+            display: none;
+        }
+    }
+}
+@media( max-width: 767px ){
+    .graph_title{
+        font-size: 24px;
+    }
+}
+@media( max-width: 590px ){
+    .graph_title{
+        font-size: 23px;
+    }
+    .table th {
+        width: 100% !important;
+        font-size: 11px;
+        display: none;
+        &:first-child {
+            display: block;
+        }
+    }
+    .table td{
+        font-size: 12px;
+        display: block;
+        &:first-child {
+            background: #f2f2f3;
+        }
+    }
+    .modules{
+        &_name{
+            text-align: center;
+        }
+    }
+}
+@media( max-width: 590px ){
+    .graph{
+        &_title{
+            font-size: 20px;
+        }
+        &_wrapper{
+            margin-top: 20px;
+        }
+    }
+    .error__block{
+        margin: 70% auto;
+    }
+}
+@media( max-width: 325px ){
+    .graph{
+        &_title{
+            font-size: 16px;
+        }
+    }
+    .table{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+</style>
+>>>>>>> f47bde4d1a391595e2674c69b85b346f71dd8359
