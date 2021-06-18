@@ -24,7 +24,6 @@ export default {
                 display: false,
             },
             scales: {
-<<<<<<< HEAD
                 xAxes: [{
                     display: true,
                     ticks: { 
@@ -44,12 +43,6 @@ export default {
             },
             responseive : true ,
             maintainAspectRatio : false ,
-=======
-                xAxes: [{ticks: {fontFamily: "'Roboto', sans-serif", fontColor: '#000'}}]
-            },
-            responseive : false ,
-            maintainAspectRatio : false , 
->>>>>>> f47bde4d1a391595e2674c69b85b346f71dd8359
             bezierCurve : false,
             animation : { 
                 duration : 500

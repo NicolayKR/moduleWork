@@ -7,14 +7,6 @@
 
 .table {
   margin-top: 10px;
-<<<<<<< HEAD
-=======
-  margin-bottom: 0;
-  background-color: white;
-}
-.table_wrapp {
-  margin-top: 10px;
->>>>>>> f47bde4d1a391595e2674c69b85b346f71dd8359
   padding-left: 34px;
   padding-right: 34px;
   padding-top: 10px;
@@ -78,7 +70,6 @@ tbody tr:hover {
   font-weight: 600;
 }
 
-<<<<<<< HEAD
 .text-success {
   margin-left: 20px;
 }
@@ -125,53 +116,17 @@ tbody tr:hover {
 }
 .graph_title {
   padding-top: 15px;
-=======
-.table th {
-  padding: 20px;
->>>>>>> f47bde4d1a391595e2674c69b85b346f71dd8359
   font-family: "Roboto", sans-serif;
-  font-size: 12px;
+  width: 100%;
+  text-align: center;
+  font-size: 29px;
   font-weight: bold;
-  line-height: normal;
-  color: #333333;
-  font-stretch: normal;
-  font-style: normal;
-  letter-spacing: normal;
-  text-align: center;
-  text-transform: uppercase;
-  border-bottom: 2px solid #3f4b86 !important;
-  border-top: none !important;
-}
-
-.table .tr {
-  border-bottom-width: 1px !important;
-}
-
-tbody tr:hover {
-  background: #eef4ff;
-}
-
-.table td {
-  border-bottom-width: 0px;
-  border-bottom-width: 1px !important;
-  padding: 24px;
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #1a1a1a;
-}
-
-.error__block {
-  margin-top: 100px;
-  margin: 30% auto;
-  text-align: center;
-  width: 50%;
-  font-weight: 600;
+  color: #36353a;
 }
 .graph_wrapper {
   margin-top: 10px;
@@ -189,7 +144,6 @@ tbody tr:hover {
   height: 100% !important;
 }
 
-<<<<<<< HEAD
 @media (max-width: 905px) {
   .error__block .text-success {
     margin-left: 0;
@@ -287,47 +241,4 @@ tbody tr:hover {
     margin-left: 40px;
     text-align: start;
   }
-}
-.container {
-  max-width: 1540px;
-=======
-.text-success {
-  margin-left: 20px;
-}
-
-.modules {
-  display: flex;
-  position: relative;
-}
-.modules_color-wrapper {
-  max-width: 50px;
-  top: 50%;
-  transform: translateY(0%);
-}
-.modules_name {
-  margin-left: 50px;
-  margin-left: 47px;
-  text-align: start;
-}
-.modules_colorline {
-  display: block;
-  position: absolute;
-  height: 30px;
-  width: 30px;
-  padding-left: 20px;
-  height: 24px;
-  width: 24px;
-  padding-left: 24px;
-  top: 50%;
-  transform: translateY(-50%);
-  border-radius: 2px;
-  border: solid 2px #3f4b86;
-}
-.modules_colorline_inactive {
-  background-color: aliceblue !important;
-  border: 2px solid;
-  border-color: black;
-  border-radius: 2px;
-  border: solid 2px #3f4b86;
->>>>>>> f47bde4d1a391595e2674c69b85b346f71dd8359
 }
