@@ -2,14 +2,14 @@
     <div class="wrapp">
         <div class="container">
             <div v-if="flagTable">
-                <div v-if="flagGraph" class="graphWrapper">
+                <div v-if="flagGraph" class="graph">
                     <div class = "graph_title">Статистика скачиваний</div>
-                    <div style="margin-top: 10px;">
-                        <graph height="600" :chartData ="datacollection" :selected="selected" />
+                    <div class = "graph_wrapper">
+                        <graph :chartData ="datacollection" :selected="selected" :windowWidth="windowWidth"/>
                     </div>
                 </div>
-                <div class="table_wrapp">
-                    <table class="table">
+                <div class="table">
+                    <table class="table_wrapp">
                         <thead>
                             <tr>
                                 <th scope="col" style="width: 70%">Название модуля</th>
@@ -37,7 +37,7 @@
             </div>
             <div v-else>
                 <b-alert show variant="success" class=error__block>
-                    Мы пытаемся соедениться с базой данных
+                    <span>Мы пытаемся соедениться с базой данных</span>
                     <div class="spinner-border text-success" role="status">
                         <span class="sr-only">Loading...</span>
                     </div>
@@ -49,7 +49,6 @@
 
 <script>
 import graph from './Graph'
-
 export default {
     components: {
         graph,
@@ -57,9 +56,7 @@ export default {
     data() {
         return {
             modelsData:[],
-            span_item:{
-                 selected: undefined,
-            },
+            windowWidth: window.innerWidth,
             datacollection: {
                 labels: [],
                 datasets: []
@@ -76,6 +73,9 @@ export default {
     
     async mounted(){
         this.fillData();
+        window.onresize = () => {
+            this.windowWidth = window.innerWidth
+        }
     },
     methods:{
         async getModules(){
@@ -147,119 +147,3 @@ export default {
         
 }
 </script>
-
-<style lang="scss" scoped>
-.wrapp{
-    min-height: 100vh;
-    padding: 15px;
-    background-color: #f2f2f3;
-    }
-
-.table {
-    margin-top: 10px;
-    margin-bottom: 0;
-    background-color: white;
-    &_wrapp{
-        margin-top:10px;
-        padding-left:34px;
-        padding-right:34px;
-        padding-top:10px;
-        background-color: white;
-        box-shadow: 0 2px 10px 0 #d9dee8;
-    }
-}
-.table th {
-    padding: 20px ;
-    font-family: 'Roboto', sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: normal;
-    color: #333333;
-    font-stretch: normal;
-    font-style: normal;
-    letter-spacing: normal;
-    text-align: center;
-    text-transform: uppercase;
-    border-bottom: 2px solid #3f4b86 !important;
-    border-top: none !important;
-}
-.table .tr{
-    border-bottom-width: 1px !important;
-}
-tbody tr:hover {
-    background: #eef4ff; 
-   }
-.table td{
-    border-bottom-width: 1px !important;
-    padding: 24px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: #1a1a1a;
-}
-.error__block{
-    margin: 30% auto;
-    text-align: center;
-    width: 50%;
-    font-weight: 600;
-}
-.text-success{
-    margin-left: 20px;
-}
-.modules{
-    position: relative;
-    &_color-wrapper{
-        max-width: 50px;
-        top: 50%;
-        transform: translateY(0%);
-    }
-    &_name{
-        margin-left: 47px;
-        text-align: start;
-        }
-    &_colorline{
-        display: block;
-        position: absolute;
-        height: 24px;
-        width: 24px;
-        padding-left: 24px;
-        top: 50%;
-        transform: translateY(-50%);
-        border-radius: 2px;
-        border: solid 2px #3f4b86;
-        &_inactive{
-            background-color: aliceblue !important;
-            border-radius: 2px;
-            border: solid 2px #3f4b86;
-        }
-    }
-}
-.graphWrapper{
-    padding: 10px 34px;
-    min-height: 600px;
-    background-color: white;
-    box-shadow: 0 2px 10px 0 #d9dee8;
-}
-.graph_title{
-    padding-top:15px;
-    font-family: 'Roboto', sans-serif;
-    width: 100%;
-    text-align: center;
-    font-size: 29px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: #36353a;
-}
-.container{
-    max-width: 1540px;
-}
-</style>
