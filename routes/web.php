@@ -26,12 +26,30 @@ Route::get('/', function () {
 Route::get('/getModels', 'App\Http\Controllers\ModelsController@getModels');
 Route::get('/getGraphData', 'App\Http\Controllers\ModelsController@getGraphData');
 Route::get('/getGraphLabel', 'App\Http\Controllers\ModelsController@getGraphLabel');
+Route::name('user.')->group(function(){
+    Route::view('/private','private')->middleware('auth')->name('private');
 
-Route::get('/test', function(){
-    $str = 'rgba('.rand(0, 255).','.rand(0, 255).','.rand(0, 255).')';
-    return $str;
-    
+    Route::get('/login', function(){
+        if(Auth::check()){
+            return redirect(route(name: 'user.private'));
+        }
+        return view('login');
+    })->name('login');
+
+    // Route::post('/login', []);
+    // Route::get('/logout', [])->name('logout');
+    Route::get('/registration', function(){
+        if(Auth::check()){
+            return redirect(route(name: 'user.private'));
+        }
+        return view('registration');
+    })->name('registration');
+
+    // Route::post('/registration',[]);
 });
-// Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/test', function(){
+//     $str = 'rgba('.rand(0, 255).','.rand(0, 255).','.rand(0, 255).')';
+//     return $str;
+    
+// });
