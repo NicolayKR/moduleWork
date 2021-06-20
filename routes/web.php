@@ -18,34 +18,35 @@ use DiDom\Query;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 //Route::get('/getModels', 'App\Http\Controllers\ModelsController@getModels');
 
 Route::get('/getModels', 'App\Http\Controllers\ModelsController@getModels');
 Route::get('/getGraphData', 'App\Http\Controllers\ModelsController@getGraphData');
 Route::get('/getGraphLabel', 'App\Http\Controllers\ModelsController@getGraphLabel');
 Route::name('user.')->group(function(){
-    Route::view('/private','private')->middleware('auth')->name('private');
-
+    //Если пользвателоь авторизован, переместим на страницу с графиками
+    Route::view('/','index')->middleware('auth')->name('private');
     Route::get('/login', function(){
         if(Auth::check()){
             return redirect(route(name: 'user.private'));
         }
         return view('login');
     })->name('login');
-
-    // Route::post('/login', []);
-    // Route::get('/logout', [])->name('logout');
+    Route::post('/login', 'App\Http\Controllers\LoginController@login');
+    Route::get('/logout', function(){
+        Auth::logout();
+        return redirect('login');
+    })->name('logout');
     Route::get('/registration', function(){
         if(Auth::check()){
             return redirect(route(name: 'user.private'));
         }
         return view('registration');
     })->name('registration');
-
-    // Route::post('/registration',[]);
+    Route::post('/registration','App\Http\Controllers\RegisterController@save');
 });
 
 // Route::get('/test', function(){

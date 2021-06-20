@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">  
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Авторизация</title>
 </head>
 <body>
 <h1>Вход</h1>
-<form class="col-3 offset-4 border rounded" method="POST" action="{{route('user.login')}}">
+<form class="col-3 offset-4 border rounded" method="POST" action="{{ route('user.login') }}">
     @csrf
     <div class="form-group">
         <label for="email" class="col-form-label-lg">Ваш email</label>
