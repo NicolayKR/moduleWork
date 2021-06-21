@@ -60,11 +60,14 @@
             padding-right: 10px;
         }
     }
+    .btn-primary{
+        font-size: 14px !important;
+        &-autorise {
+            padding: 6px 25px !important;
+        }
+    }
 }
 @media( max-width: 420px ){
-    .btn-primary{
-        font-size: 13px !important;
-    }
     .graph{
         &_title{
             font-size: 14px;
@@ -77,6 +80,35 @@
         &_element_wrapper{
             span{
                 font-size: 12px;
+            }
+        }
+    }
+    .login_title, .registration_title  {
+        padding-top: 10px;
+        font-size: 30px;
+    }
+    .registration_button-wrapper {
+        flex-direction: column;
+    }
+    .btn-primary{
+        &-autorise {
+            padding: 6px 22px !important;
+        }
+    }
+}
+@media( max-width: 350px ){
+    .graph{
+        &_title{
+            font-size: 14px;
+        }
+    }
+    .table-xs{
+        &_name{
+            font-size: 11px;
+        }
+        &_element_wrapper{
+            span{
+                font-size: 11px;
             }
         }
     }

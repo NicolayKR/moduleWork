@@ -6,7 +6,7 @@
                     <a class="btn btn-primary btn-lg btn-sm" href="/logout">Выйти</a>
                 </div>
                 <div v-if="flagGraph" class="graph">
-                    <div class = "graph_title">Статистика скачиваний <br>(5 дней)<br></div>
+                    <div class = "graph_title">Статистика скачиваний <br>(7 дней)<br></div>
                     <div class = "graph_wrapper">
                         <graph :chartData ="datacollection" :selected="selected" :windowWidth="windowWidth"/>
                     </div>

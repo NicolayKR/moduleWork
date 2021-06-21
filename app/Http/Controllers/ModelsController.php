@@ -17,7 +17,7 @@ class ModelsController extends Controller
         $collection = Competitor::select('name','id','price','downloads')->orderBy('downloads', 'desc')->get();
         $collection_history = CompetitorHistory::select('name','id_modules','downloads')
                                 ->selectRaw("DATE(created_at) as created_date")
-                                ->whereRaw("created_at BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 6 DAY) and date(now()+ INTERVAL 1 DAY)")
+                                ->whereRaw("created_at BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 8 DAY) and date(now()+ INTERVAL 1 DAY)")
                                 ->orderBy('downloads', 'desc')->get();
         foreach ($collection_history as  $value) {
                 $array_data[$value['id_modules']]['downloads'][] = (int)$value['downloads'];

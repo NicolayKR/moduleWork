@@ -119,6 +119,7 @@ tbody tr:hover {
   border: solid 1px #f2f2f3;
 }
 .table-xs_name {
+  padding-top: 10px;
   padding-left: 30px;
   padding-right: 10px;
   text-align: center;
@@ -270,12 +271,15 @@ tbody tr:hover {
   .graph_wrapper {
     padding-right: 10px;
   }
+
+  .btn-primary {
+    font-size: 14px !important;
+  }
+  .btn-primary-autorise {
+    padding: 6px 25px !important;
+  }
 }
 @media (max-width: 420px) {
-  .btn-primary {
-    font-size: 13px !important;
-  }
-
   .graph_title {
     font-size: 14px;
   }
@@ -285,6 +289,31 @@ tbody tr:hover {
   }
   .table-xs_element_wrapper span {
     font-size: 12px;
+  }
+
+  .login_title, .registration_title {
+    padding-top: 10px;
+    font-size: 30px;
+  }
+
+  .registration_button-wrapper {
+    flex-direction: column;
+  }
+
+  .btn-primary-autorise {
+    padding: 6px 22px !important;
+  }
+}
+@media (max-width: 350px) {
+  .graph_title {
+    font-size: 14px;
+  }
+
+  .table-xs_name {
+    font-size: 11px;
+  }
+  .table-xs_element_wrapper span {
+    font-size: 11px;
   }
 }
 .form-check-input:checked {

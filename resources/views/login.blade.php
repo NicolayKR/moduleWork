@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <h1 class="login_title">Вход</h1>
-    <form class="col-4 offset-4 border rounded mt-3" method="POST" action="{{ route('user.login') }}">
+    <form class="col-lg-6  offset-lg-3 col-sm-8 offset-sm-2 border rounded mt-3" method="POST" action="{{ route('user.login') }}">
         @csrf
         <div class="form-group">
             <label for="email" class="col-form-label-lg">Ваш email</label>
