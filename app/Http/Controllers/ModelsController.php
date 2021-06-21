@@ -52,7 +52,7 @@ class ModelsController extends Controller
                 }
             }
             foreach ($collection as  $value) {
-                $array_data[$value['id']]['price'] = $value['price'];
+                $array_data[$value['id']]['price'] = (int)$value['price'];
             }
             $final_array = [];
             $i = 0;

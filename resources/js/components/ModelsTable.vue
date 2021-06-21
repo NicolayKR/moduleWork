@@ -49,8 +49,8 @@
                                     ></span>
                                 <div class="table-xs_name">{{models_item.name}}</div>
                                 <div class="table-xs_element_wrapper">
-                                    <span>Платно: {{models_item.price}}</span>
-                                    <span>Загрузок: {{models_item.current_downloads}}</span>
+                                    <span>{{getPrice(models_item.price)}}</span>
+                                    <span>Загрузок: <span class="bold_downloads">{{models_item.current_downloads}}</span></span>
                                 </div>
                             </div>
                         </li>
@@ -120,6 +120,14 @@ export default {
                     this.selected[key].checked = !this.selected[key].checked;
                     this.setCurrentSelected();
                     }
+                }
+            },
+            getPrice(a){
+                if(a == 1){
+                    return 'Платно';
+                }
+                else{
+                    return 'Бесплатно';
                 }
             },
         getDateFromGraph(){

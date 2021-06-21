@@ -8,20 +8,24 @@
     }
     &_name{
         padding-top: 10px;
-        padding-left: 30px;
+        padding-left: 40px;
         padding-right: 10px;
-        text-align: center;
         font-size: 14px;
         font-weight: 500;
     }
     &_element_wrapper{
         display:flex;
-        justify-content: center;
-        margin-top: 6px;
+        padding-left: 20px;
+        margin-top: 10px;
         span{
             margin-left: 20px;
             padding-bottom: 6px;
             font-size: 14px;
+        }
+        .bold_downloads{
+            margin-left: 1px;
+            font-weight: 500;
+            font-size: 13px;
         }
     }
     &_colorline{
