@@ -59,7 +59,7 @@
                                     ></span>
                                 <div class="table-xs_name">{{models_item.name}}</div>
                                 <div class="table-xs_element_wrapper">
-                                    <span>{{getPrice(models_item.price)}}</span>
+                                    <span class="bold_price">{{getPrice(models_item.price)}}</span>
                                     <span>Загрузок: <span class="bold_downloads">{{models_item.current_downloads}}</span></span>
                                 </div>
                             </div>

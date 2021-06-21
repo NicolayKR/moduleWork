@@ -124,7 +124,7 @@ tbody tr:hover {
   padding-left: 40px;
   padding-right: 10px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 }
 .table-xs_element_wrapper {
   display: flex;
@@ -138,7 +138,11 @@ tbody tr:hover {
 }
 .table-xs_element_wrapper .bold_downloads {
   margin-left: 1px;
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 12px;
+}
+.table-xs_element_wrapper .bold_price {
+  font-weight: 700;
   font-size: 13px;
 }
 .table-xs_colorline {

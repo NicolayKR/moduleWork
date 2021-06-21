@@ -76598,7 +76598,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "table-xs_element_wrapper" }, [
-                        _c("span", [
+                        _c("span", { staticClass: "bold_price" }, [
                           _vm._v(_vm._s(_vm.getPrice(models_item.price)))
                         ]),
                         _vm._v(" "),
