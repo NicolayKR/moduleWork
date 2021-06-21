@@ -1,0 +1,12 @@
+.form-check-input:checked{
+    background-color: #ff9000 !important;
+    border-color: #ff9000 !important;
+}
+.login{
+    &_title{
+        text-align: center;
+    }
+    &_button-wrapper{
+        display: flex;
+    }
+}

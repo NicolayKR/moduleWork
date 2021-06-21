@@ -11,8 +11,8 @@
 </head>
 <body>
 <div class="container">
-    <h1>Регистрация</h1>
-    <form class="col-3 offset-4 border rounded" method="POST" action="{{route('user.registration')}}">
+    <h1 class="registration_title">Регистрация</h1>
+    <form class="col-4 offset-4 border rounded mt-3" method="POST" action="{{route('user.registration')}}">
         @csrf
         <div class="form-group">
             <label for="email" class="col-form-label-lg">Ваш email</label>
@@ -29,11 +29,14 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="confim_password" class="col-form-label-lg">Повторите Пароль</label>
-            <input class="form-control" id="confim_password" name="confim_password" type="password" value="" placeholder="Повторите Пароль">
+            <label for="confim_password" class="col-form-label-lg">Повторите пароль</label>
+            <input class="form-control" id="confim_password" name="confim_password" type="password" value="" placeholder="Пароль">
         </div>
-        <div class="form-group">
-            <button class="btn btn-lg btn-primary" type="submit" name="sendMe" value="1">Войти</button>
+        <div class="form-group d-grid">
+            <div class="registration_button-wrapper">
+                <a class="btn btn-lg btn-primary btn-primary-autorise" href="/login">Назад</a>
+                <button class="btn btn-lg btn-primary btn-primary-autorise" type="submit" name="sendMe" value="1">Зарегистрироваться</button>
+            <div>
         </div>
     </form>
     @if ($errors->any())

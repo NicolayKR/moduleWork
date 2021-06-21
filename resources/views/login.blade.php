@@ -11,8 +11,8 @@
 </head>
 <body>
 <div class="container">
-    <h1>Вход</h1>
-    <form class="col-3 offset-4 border rounded" method="POST" action="{{ route('user.login') }}">
+    <h1 class="login_title">Вход</h1>
+    <form class="col-4 offset-4 border rounded mt-3" method="POST" action="{{ route('user.login') }}">
         @csrf
         <div class="form-group">
             <label for="email" class="col-form-label-lg">Ваш email</label>
@@ -29,7 +29,7 @@
             @enderror
         </div>
         <div class="form-group">
-            <div class="col-md-6 offset-md-4">
+            <div class="d-grid">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -39,8 +39,11 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <button class="btn btn-lg btn-primary" type="submit" name="sendMe" value="1">Войти</button>
+        <div class="form-group d-grid">
+            <div class="login_button-wrapper">
+                <button class="btn btn-lg btn-primary btn-primary-autorise" type="submit" name="sendMe" value="1">Войти</button>
+                <a class="btn btn-lg btn-primary btn-primary-autorise" href="/registration">Регистрация</a>
+            </div>
         </div>
     </form>
 </div>

@@ -155,6 +155,10 @@ tbody tr:hover {
   font-size: 16px !important;
   font-weight: 500 !important;
 }
+.btn-primary-autorise {
+  margin: 5px auto !important;
+  padding: 6px 40px !important;
+}
 
 @media (max-width: 905px) {
   .error__block .text-success {
@@ -253,6 +257,25 @@ tbody tr:hover {
     text-align: start;
   }
 }
+.form-check-input:checked {
+  background-color: #ff9000 !important;
+  border-color: #ff9000 !important;
+}
+
+.login_title {
+  text-align: center;
+}
+.login_button-wrapper {
+  display: flex;
+}
+
+.registration_title {
+  text-align: center;
+}
+.registration_button-wrapper {
+  display: flex;
+}
+
 .container {
   max-width: 1540px !important;
 }
