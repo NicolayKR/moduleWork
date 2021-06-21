@@ -2,6 +2,9 @@
     <div class="wrapp">
         <div class="container">
             <div v-if="flagTable">
+                <div class="d-grid d-md-flex justify-content-md-end">
+                    <a class="btn btn-primary" href="/logout">Выйти</a>
+                </div>
                 <div v-if="flagGraph" class="graph">
                     <div class = "graph_title">Статистика скачиваний <br>(5 дней)<br></div>
                     <div class = "graph_wrapper">
@@ -147,3 +150,7 @@ export default {
         
 }
 </script>
+
+<style scoped lang="scss">
+
+</style>

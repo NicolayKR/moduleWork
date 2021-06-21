@@ -36,10 +36,6 @@ Route::name('user.')->group(function(){
         return view('login');
     })->name('login');
     Route::post('/login', 'App\Http\Controllers\LoginController@login');
-    Route::get('/logout', function(){
-        Auth::logout();
-        return redirect('login');
-    })->name('logout');
     Route::get('/registration', function(){
         if(Auth::check()){
             return redirect(route(name: 'user.private'));
@@ -47,6 +43,11 @@ Route::name('user.')->group(function(){
         return view('registration');
     })->name('registration');
     Route::post('/registration','App\Http\Controllers\RegisterController@save');
+
+    Route::get('/logout', function(){
+        Auth::logout();
+        return redirect('login');
+    })->name('logout');
 });
 
 // Route::get('/test', function(){
