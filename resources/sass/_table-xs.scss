@@ -4,28 +4,41 @@
     &_item{
         position: relative;
         padding-left: 10px;
-        border: solid 2px black;
+        border: solid 1px #f2f2f3;
     }
     &_name{
-        padding-left: 32px;
+        padding-left: 30px;
+        padding-right: 10px;
         text-align: center;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    &_element_wrapper{
+        display:flex;
+        justify-content: center;
+        margin-top: 6px;
+        span{
+            margin-left: 20px;
+            padding-bottom: 6px;
+            font-size: 14px;
+        }
     }
     &_colorline{
         display: block;
         position: absolute;
-        height: 24px;
-        width: 24px;
-        padding-left: 24px !important;
+        height: 20px;
+        width: 20px;
+        padding-left: 20px !important;
         top: 50%;
         transform: translateY(-50%);
-        border-radius: 2px;
-        border: solid 2px #3f4b86;
+        border-radius: 1px;
+        border: solid 1px #3f4b86;
         &_inactive{
             background-color: aliceblue !important;
-            border: 2px solid;
+            border: 1px solid;
             border-color: black;
-            border-radius: 2px;
-            border: solid 2px #3f4b86;
+            border-radius: 1px;
+            border: solid 1px #3f4b86;
         }
     }
     ul{

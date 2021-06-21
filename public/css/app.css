@@ -116,29 +116,42 @@ tbody tr:hover {
 .table-xs_item {
   position: relative;
   padding-left: 10px;
-  border: solid 2px black;
+  border: solid 1px #f2f2f3;
 }
 .table-xs_name {
-  padding-left: 32px;
+  padding-left: 30px;
+  padding-right: 10px;
   text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+.table-xs_element_wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}
+.table-xs_element_wrapper span {
+  margin-left: 20px;
+  padding-bottom: 6px;
+  font-size: 14px;
 }
 .table-xs_colorline {
   display: block;
   position: absolute;
-  height: 24px;
-  width: 24px;
-  padding-left: 24px !important;
+  height: 20px;
+  width: 20px;
+  padding-left: 20px !important;
   top: 50%;
   transform: translateY(-50%);
-  border-radius: 2px;
-  border: solid 2px #3f4b86;
+  border-radius: 1px;
+  border: solid 1px #3f4b86;
 }
 .table-xs_colorline_inactive {
   background-color: aliceblue !important;
-  border: 2px solid;
+  border: 1px solid;
   border-color: black;
-  border-radius: 2px;
-  border: solid 2px #3f4b86;
+  border-radius: 1px;
+  border: solid 1px #3f4b86;
 }
 .table-xs ul {
   padding-left: 0;
@@ -259,41 +272,19 @@ tbody tr:hover {
   }
 }
 @media (max-width: 420px) {
+  .btn-primary {
+    font-size: 13px !important;
+  }
+
   .graph_title {
     font-size: 14px;
   }
 
-  .table {
-    padding-left: 10px;
-    padding-right: 10px;
+  .table-xs_name {
+    font-size: 12px;
   }
-
-  .table th {
-    font-size: 10px;
-  }
-
-  .table td {
-    font-size: 10px;
-  }
-
-  .modules_colorline_inactive {
-    border: 1px solid;
-    border-color: black;
-    border-radius: 1px;
-    border: solid 1px #3f4b86;
-  }
-
-  .modules_colorline {
-    height: 18px;
-    width: 18px;
-    padding-left: 18px;
-    border-radius: 1px;
-    border: solid 1px #3f4b86;
-  }
-
-  .modules_name {
-    margin-left: 40px;
-    text-align: start;
+  .table-xs_element_wrapper span {
+    font-size: 12px;
   }
 }
 .form-check-input:checked {

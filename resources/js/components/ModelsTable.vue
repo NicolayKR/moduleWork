@@ -3,7 +3,7 @@
         <div class="container">
             <div v-if="flagTable">
                 <div class="d-grid d-md-flex justify-content-md-end">
-                    <a class="btn btn-primary btn-lg" href="/logout">Выйти</a>
+                    <a class="btn btn-primary btn-lg btn-sm" href="/logout">Выйти</a>
                 </div>
                 <div v-if="flagGraph" class="graph">
                     <div class = "graph_title">Статистика скачиваний <br>(5 дней)<br></div>
@@ -48,8 +48,10 @@
                                     @click="spanMovie(index)" 
                                     ></span>
                                 <div class="table-xs_name">{{models_item.name}}</div>
-                                <span>{{models_item.price}}</span>
-                                <span>{{models_item.current_downloads}}</span>
+                                <div class="table-xs_element_wrapper">
+                                    <span>Платно: {{models_item.price}}</span>
+                                    <span>Загрузок: {{models_item.current_downloads}}</span>
+                                </div>
                             </div>
                         </li>
                     </ul>
