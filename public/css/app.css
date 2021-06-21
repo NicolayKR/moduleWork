@@ -275,6 +275,10 @@ select {
   .modules_name {
     text-align: center;
   }
+
+  .table-xs_element_wrapper span {
+    font-size: 13px;
+  }
 }
 @media (max-width: 525px) {
   .graph_title {
