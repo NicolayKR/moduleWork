@@ -109,6 +109,45 @@ tbody tr:hover {
   border: solid 2px #3f4b86;
 }
 
+.table-xs {
+  margin-top: 10px;
+  box-shadow: 0 2px 10px 0 #d9dee8;
+}
+.table-xs_item {
+  position: relative;
+  padding-left: 10px;
+  border: solid 2px black;
+}
+.table-xs_name {
+  padding-left: 32px;
+  text-align: center;
+}
+.table-xs_colorline {
+  display: block;
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  padding-left: 24px !important;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 2px;
+  border: solid 2px #3f4b86;
+}
+.table-xs_colorline_inactive {
+  background-color: aliceblue !important;
+  border: 2px solid;
+  border-color: black;
+  border-radius: 2px;
+  border: solid 2px #3f4b86;
+}
+.table-xs ul {
+  padding-left: 0;
+}
+.table-xs li {
+  list-style-type: none;
+  background-color: white;
+}
+
 .graph {
   margin-top: 10px;
   padding: 10px 34px;

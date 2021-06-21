@@ -11,7 +11,7 @@
                         <graph :chartData ="datacollection" :selected="selected" :windowWidth="windowWidth"/>
                     </div>
                 </div>
-                <div class="table">
+                <div class="table d-none d-sm-block">
                     <table class="table_wrapp">
                         <thead>
                             <tr>
@@ -36,6 +36,23 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="table-xs d-block d-sm-none">
+                    <ul>
+                        <li v-for ="(models_item,index) in modelsData">
+                            <div class="table-xs_item">
+                                <span 
+                                    class = "table-xs_colorline"
+                                    :style="{'background-color': models_item.borderColor}"
+                                    :class ="{ modules_colorline_inactive: !selected[Number(index)].checked }"
+                                    @click="spanMovie(index)" 
+                                    ></span>
+                                <div class="table-xs_name">{{models_item.name}}</div>
+                                <span>{{models_item.price}}</span>
+                                <span>{{models_item.current_downloads}}</span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>    
             </div>
             <div v-else>
