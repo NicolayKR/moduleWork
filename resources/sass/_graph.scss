@@ -28,6 +28,12 @@
         }
     }
 }
+select{
+    //width: 50%;
+    border: 1px solid #ff9000;
+    box-shadow: 0 1px 0 1px #d9dee8; 
+    border-radius: .5em;
+}
 #line-chart{
     width: 100% !important;
     height: 100% !important;   

@@ -93,6 +93,9 @@
             padding: 6px 22px !important;
         }
     }
+    select{
+        width: 50%;
+    }
 }
 @media( max-width: 350px ){
     .table-xs_element_wrapper{

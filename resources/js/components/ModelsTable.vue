@@ -5,6 +5,16 @@
                 <div class="d-grid d-md-flex justify-content-md-end">
                     <a class="btn btn-primary btn-lg btn-sm" href="/logout">Выйти</a>
                 </div>
+                <div class="select_date">
+                    <select v-model="selectedDate">
+                        <option disabled value="">Выберите один из вариантов</option>
+                        <option>За неделю</option>
+                        <option>За месяц</option>
+                        <option>За год</option>
+                        <option>За все время</option>
+                    </select>
+                </div>
+                <span>Выбрано: {{ selectedDate }}</span>
                 <div v-if="flagGraph" class="graph">
                     <div class = "graph_title">Статистика скачиваний <br>(7 дней)<br></div>
                     <div class = "graph_wrapper">
@@ -83,10 +93,7 @@ export default {
                 labels: [],
                 datasets: []
             },
-            current_datacollection: {
-                labels: [],
-                datasets: []
-            },
+            selectedDate: '',
             selected: [],
             flagTable: false,
             flagGraph: false,

@@ -197,6 +197,12 @@ tbody tr:hover {
   max-height: 600px;
 }
 
+select {
+  border: 1px solid #ff9000;
+  box-shadow: 0 1px 0 1px #d9dee8;
+  border-radius: 0.5em;
+}
+
 #line-chart {
   width: 100% !important;
   height: 100% !important;
@@ -305,6 +311,10 @@ tbody tr:hover {
 
   .btn-primary-autorise {
     padding: 6px 22px !important;
+  }
+
+  select {
+    width: 50%;
   }
 }
 @media (max-width: 350px) {
