@@ -76501,7 +76501,7 @@ var render = function() {
                       expression: "selectedDate"
                     }
                   ],
-                  staticClass: "form-control",
+                  staticClass: "form-control col-4",
                   on: {
                     change: function($event) {
                       var $$selectedVal = Array.prototype.filter
