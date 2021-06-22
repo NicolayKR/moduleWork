@@ -43,21 +43,28 @@ class ModelsController extends Controller
     function getData($start_date, $finish_date, $range, $case_par){
         $array_data = [];
         $dates = [];
-        $array_month = ["Январь","Февраль","Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентрабрь", "Окрябрь", "Ноябрь", "Декабрь"];
         $collection = Competitor::select('name','id','price','downloads')->orderBy('downloads', 'desc')->get();
-        if($case_par != 4){
+        if($case_par == 4){
+            $collection_history = CompetitorHistory::select('name','id_modules','downloads')
+                                    ->selectRaw("DATE(created_at) as created_date")
+                                    ->orderBy('downloads', 'desc')->get();
+            }
+       if($case_par == 3) {
+            $collection_history = CompetitorHistory::select('name','id_modules')
+                                    ->selectRaw("month(created_at) as created_date")
+                                    ->selectRaw("max(downloads) as downloads")
+                                    ->whereRaw($range."created_at)"."BETWEEN ".$start_date." and ".$finish_date."")
+                                    ->groupBy('name','id_modules')
+                                    ->groupByRaw('month(created_at)')
+                                    ->orderBy('downloads', 'desc')->get();                
+        }
+        else{
             $collection_history = CompetitorHistory::select('name','id_modules','downloads')
                                     ->selectRaw("DATE(created_at) as created_date")
                                     ->whereRaw($range."created_at)"."BETWEEN ".$start_date." and ".$finish_date."")
                                     ->orderBy('downloads', 'desc')->get();
             }
-        else{
-            $collection_history = CompetitorHistory::select('name','id_modules','downloads')
-                                    ->selectRaw("DATE(created_at) as created_date")
-                                    ->orderBy('downloads', 'desc')->get();
-            }
         foreach ($collection_history as  $value) {
-                $array_data[$value['id_modules']]['downloads'][] = (int)$value['downloads'];
                 $array_data[$value['id_modules']]['dates'][] = $value['created_date']; 
                 $current_color = $this->rand_color();
                 if (!array_key_exists('name', $array_data[$value['id_modules']])) {
@@ -87,6 +94,25 @@ class ModelsController extends Controller
                 else{
                     $array_data[$value['id_modules']]['pointBackgroundColor'][] = $array_data[$value['id_modules']]['pointBackgroundColor'][0];
                 }
+                if($case_par == 3){
+                    $current_array_downloads = [];
+                    for($index = 0; $index < 12 ; $index++){
+                        array_push($current_array_downloads,0);
+                    }
+                    foreach ($collection_history as  $value) {
+                        $array_data[$value['id_modules']]['downloads'] = $current_array_downloads;
+                    }
+                    foreach ($collection_history as  $value) {
+                        for($index = 0; $index < 12 ; $index++){
+                            if($index == (int)$value['created_date']-1){
+                                $array_data[$value['id_modules']]['downloads'][$index] = (int)$value['downloads'];
+                            }
+                        }
+                    }
+                }
+                else{
+                    $array_data[$value['id_modules']]['downloads'][] = (int)$value['downloads'];
+                }
             }
             foreach ($collection as  $value) {
                 $array_data[$value['id']]['price'] = (int)$value['price'];
@@ -107,8 +133,10 @@ class ModelsController extends Controller
                     }
                 }
                 $value['lenght_downloads'] = $lenght_downloads;
-                sort($value['downloads']);
-                sort($value['dates']);
+                if($case_par!=3){
+                    sort($value['downloads']);
+                    sort($value['dates']);
+                }
                 $final_array[$i] = $value;
                 $i++;
             }

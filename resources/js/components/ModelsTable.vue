@@ -175,7 +175,13 @@ export default {
                         checked_dataset.id = this.modelsData[key].id;
                         this.selected.push(checked_dataset);
                     }
-                    this.datacollection.labels = Array.from(new Set(this.datacollection.labels.concat(this.modelsData[key].dates)));
+                    if(this.getSelect(this.selectedDate) == 3){
+                        let array_month = ["Январь","Февраль","Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентрабрь", "Окрябрь", "Ноябрь", "Декабрь"];
+                        this.datacollection.labels = array_month;
+                    }
+                    else{
+                        this.datacollection.labels = Array.from(new Set(this.datacollection.labels.concat(this.modelsData[key].dates)));
+                    }
                     this.datacollection.datasets.push(current_dataset);
                 }
             this.current_datacollection = this.datacollection;
