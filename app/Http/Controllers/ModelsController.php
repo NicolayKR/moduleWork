@@ -99,16 +99,14 @@ class ModelsController extends Controller
                     for($index = 0; $index < 12 ; $index++){
                         array_push($current_array_downloads,0);
                     }
-                    foreach ($collection_history as  $value) {
+                    if (!array_key_exists('downloads', $array_data[$value['id_modules']])) {
                         $array_data[$value['id_modules']]['downloads'] = $current_array_downloads;
                     }
-                    foreach ($collection_history as  $value) {
-                        for($index = 0; $index < 12 ; $index++){
-                            if($index == (int)$value['created_date']-1){
-                                $array_data[$value['id_modules']]['downloads'][$index] = (int)$value['downloads'];
-                            }
+                    for($index = 0; $index < 12 ; $index++){
+                        if($index == (int)$value['created_date']-1){
+                            $array_data[$value['id_modules']]['downloads'][$index] = (int)$value['downloads'];
                         }
-                    }
+                    }                
                 }
                 else{
                     $array_data[$value['id_modules']]['downloads'][] = (int)$value['downloads'];
