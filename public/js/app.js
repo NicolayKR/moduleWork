@@ -76536,7 +76536,12 @@ var render = function() {
             _vm._v(" "),
             _vm.flagGraph
               ? _c("div", { staticClass: "graph" }, [
-                  _vm._m(1),
+                  _c("div", { staticClass: "graph_title" }, [
+                    _vm._v("Статистика скачиваний "),
+                    _c("br"),
+                    _vm._v(_vm._s(_vm.selectedDate)),
+                    _c("br")
+                  ]),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -76558,7 +76563,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "table d-none d-sm-block" }, [
               _c("table", { staticClass: "table_wrapp" }, [
-                _vm._m(2),
+                _vm._m(1),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -76641,7 +76646,7 @@ var render = function() {
               )
             ])
           ])
-        : _c("div", [_vm._m(3)])
+        : _c("div", [_vm._m(2)])
     ])
   ])
 }
@@ -76664,17 +76669,6 @@ var staticRenderFns = [
         )
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "graph_title" }, [
-      _vm._v("Статистика скачиваний "),
-      _c("br"),
-      _vm._v("(7 дней)"),
-      _c("br")
-    ])
   },
   function() {
     var _vm = this

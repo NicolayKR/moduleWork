@@ -43,6 +43,7 @@ class ModelsController extends Controller
     function getData($start_date, $finish_date, $range, $case_par){
         $array_data = [];
         $dates = [];
+        $array_month = ["Январь","Февраль","Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентрабрь", "Окрябрь", "Ноябрь", "Декабрь"];
         $collection = Competitor::select('name','id','price','downloads')->orderBy('downloads', 'desc')->get();
         if($case_par != 4){
             $collection_history = CompetitorHistory::select('name','id_modules','downloads')
