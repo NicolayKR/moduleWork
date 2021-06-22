@@ -11,14 +11,50 @@ use Illuminate\Http\Request;
 
 class ModelsController extends Controller
 {
-    public function getModels() {
+    public function getModels(Request $request) {
+        $date = $request->query('date'); 
+        switch ($date) {
+            case 1:
+                $start_date = 'DATE_SUB(DATE(NOW()), INTERVAL 8 DAY)';
+                $finish_date = 'DATE(now()+ INTERVAL 1 DAY)';
+                $range ='(';
+                $case_par = 1;
+                return $this->getData($start_date, $finish_date, $range, $case_par);
+            case 2:
+                $start_date = 'MONTH(DATE_SUB(DATE(NOW()), INTERVAL 1 MONTH))';
+                $finish_date = 'MONTH(DATE(NOW()+ INTERVAL 1 MONTH))';
+                $range ='month(';
+                $case_par = 2;
+                return $this->getData($start_date, $finish_date, $range, $case_par);
+            case 3:
+                $start_date = 'YEAR(DATE_SUB(DATE(NOW()), INTERVAL 1 YEAR))';
+                $finish_date ='YEAR(DATE(NOW() + INTERVAL 1 YEAR))';
+                $range ='year(';
+                $case_par = 3;
+                return $this->getData($start_date, $finish_date, $range, $case_par);
+            case 4:
+                $start_date = '';
+                $finish_date ='';
+                $range ='';
+                $case_par = 4;
+                return $this->getData($start_date, $finish_date, $range, $case_par);  
+        } 
+    }
+    function getData($start_date, $finish_date, $range, $case_par){
         $array_data = [];
         $dates = [];
         $collection = Competitor::select('name','id','price','downloads')->orderBy('downloads', 'desc')->get();
-        $collection_history = CompetitorHistory::select('name','id_modules','downloads')
-                                ->selectRaw("DATE(created_at) as created_date")
-                                ->whereRaw("created_at BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 8 DAY) and date(now()+ INTERVAL 1 DAY)")
-                                ->orderBy('downloads', 'desc')->get();
+        if($case_par != 4){
+            $collection_history = CompetitorHistory::select('name','id_modules','downloads')
+                                    ->selectRaw("DATE(created_at) as created_date")
+                                    ->whereRaw($range."created_at)"."BETWEEN ".$start_date." and ".$finish_date."")
+                                    ->orderBy('downloads', 'desc')->get();
+            }
+        else{
+            $collection_history = CompetitorHistory::select('name','id_modules','downloads')
+                                    ->selectRaw("DATE(created_at) as created_date")
+                                    ->orderBy('downloads', 'desc')->get();
+            }
         foreach ($collection_history as  $value) {
                 $array_data[$value['id_modules']]['downloads'][] = (int)$value['downloads'];
                 $array_data[$value['id_modules']]['dates'][] = $value['created_date']; 
@@ -75,7 +111,7 @@ class ModelsController extends Controller
                 $final_array[$i] = $value;
                 $i++;
             }
-            return $final_array;
+            return $final_array;   
     }
     function rand_color() {
             $str = 'rgba('.rand(0, 255).','.rand(0, 255).','.rand(0, 255).')';

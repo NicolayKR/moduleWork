@@ -51,7 +51,5 @@ Route::name('user.')->group(function(){
 });
 
 // Route::get('/test', function(){
-//     $str = 'rgba('.rand(0, 255).','.rand(0, 255).','.rand(0, 255).')';
-//     return $str;
-    
+   
 // });

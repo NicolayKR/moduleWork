@@ -14,11 +14,10 @@
                         <option>За все время</option>
                     </select>
                 </div>
-                <span>Выбрано: {{ selectedDate }}</span>
                 <div v-if="flagGraph" class="graph">
                     <div class = "graph_title">Статистика скачиваний <br>(7 дней)<br></div>
                     <div class = "graph_wrapper">
-                        <graph :chartData ="datacollection" :selected="selected" :windowWidth="windowWidth"/>
+                        <graph :chartData ="datacollection" :selected="selected" :windowWidth="windowWidth" :selectedDate="selectedDate"/>
                     </div>
                 </div>
                 <div class="table d-none d-sm-block">
@@ -68,12 +67,12 @@
                 </div>    
             </div>
             <div v-else>
-                <b-alert show variant="success" class=error__block>
+                <div class="alert alert-success error__block" role="alert">
                     <span>Мы пытаемся соедениться с базой данных</span>
                     <div class="spinner-border text-success" role="status">
                         <span class="sr-only">Loading...</span>
                     </div>
-                </b-alert>   
+                </div>
             </div>
         </div>
     </div>
@@ -93,23 +92,28 @@ export default {
                 labels: [],
                 datasets: []
             },
-            selectedDate: '',
+            selectedDate: 'За неделю',
             selected: [],
             flagTable: false,
             flagGraph: false,
         }
     },
-    
+
     async mounted(){
         this.fillData();
         window.onresize = () => {
             this.windowWidth = window.innerWidth
         }
     },
+    watch:{
+        selectedDate(){
+            this.fillData();
+        }
+    },
     methods:{
         async getModules(){
             try{
-                const response = await axios.get(`/getModels`);
+                const response = await axios.get(`/getModels?&date=${this.getSelect(this.selectedDate)}`);
                 this.modelsData = response.data;
                 this.getDateFromGraph();  
                 this.flagTable = true;
@@ -136,6 +140,18 @@ export default {
                 else{
                     return 'Бесплатно';
                 }
+            },
+            getSelect(a){
+                switch (a) {
+                    case 'За неделю':
+                        return 1;
+                    case 'За месяц':
+                        return 2;
+                    case 'За год':
+                        return 3;
+                     case 'За все время':
+                        return 4;
+                }       
             },
         getDateFromGraph(){
             for(var key in this.modelsData) {

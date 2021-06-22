@@ -202,6 +202,10 @@ tbody tr:hover {
   max-height: 600px;
 }
 
+.select_date {
+  margin-top: 10px;
+}
+
 select {
   border: 1px solid #ff9000;
   box-shadow: 0 1px 0 1px #d9dee8;
@@ -325,11 +329,7 @@ select {
   }
 }
 @media (max-width: 350px) {
-  .table-xs_element_wrapper .bold_downloads {
-    font-weight: 700;
-    font-size: 12px;
-  }
-  .table-xs_element_wrapper .bold_price {
+  .table-xs_element_wrapper .bold_downloads, .table-xs_element_wrapper .bold_price {
     font-weight: 700;
     font-size: 12px;
   }
@@ -340,9 +340,6 @@ select {
 
   .table-xs_name {
     font-size: 12px;
-  }
-  .table-xs_element_wrapper span {
-    font-size: 11px;
   }
 }
 .login_title {

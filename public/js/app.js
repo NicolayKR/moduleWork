@@ -1876,6 +1876,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     windowWidth: {
       "default": null
+    },
+    selectedDate: {
+      "default": null
     }
   },
   data: function data() {
@@ -1918,8 +1921,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
+  watch: {
+    selectedDate: function selectedDate() {
+      console.log(this.selectedDate); //this.$data._chart.clear();
+      //this.updateGraphData();
+    }
+  },
   mounted: function mounted() {
     this.updateGraphData();
+    console.log(this.selectedDate);
     this.selectedWatcher = this.$watch('selected', this.updateChart, {
       deep: true
     });
@@ -2052,7 +2062,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2066,7 +2075,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         labels: [],
         datasets: []
       },
-      selectedDate: '',
+      selectedDate: 'За неделю',
       selected: [],
       flagTable: false,
       flagGraph: false
@@ -2094,6 +2103,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
+  watch: {
+    selectedDate: function selectedDate() {
+      this.fillData();
+    }
+  },
   methods: {
     getModules: function getModules() {
       var _this2 = this;
@@ -2106,7 +2120,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.prev = 0;
                 _context2.next = 3;
-                return axios.get("/getModels");
+                return axios.get("/getModels?&date=".concat(_this2.getSelect(_this2.selectedDate)));
 
               case 3:
                 response = _context2.sent;
@@ -2147,6 +2161,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return 'Платно';
       } else {
         return 'Бесплатно';
+      }
+    },
+    getSelect: function getSelect(a) {
+      switch (a) {
+        case 'За неделю':
+          return 1;
+
+        case 'За месяц':
+          return 2;
+
+        case 'За год':
+          return 3;
+
+        case 'За все время':
+          return 4;
       }
     },
     getDateFromGraph: function getDateFromGraph() {
@@ -76508,8 +76537,6 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("span", [_vm._v("Выбрано: " + _vm._s(_vm.selectedDate))]),
-            _vm._v(" "),
             _vm.flagGraph
               ? _c("div", { staticClass: "graph" }, [
                   _vm._m(1),
@@ -76522,7 +76549,8 @@ var render = function() {
                         attrs: {
                           chartData: _vm.datacollection,
                           selected: _vm.selected,
-                          windowWidth: _vm.windowWidth
+                          windowWidth: _vm.windowWidth,
+                          selectedDate: _vm.selectedDate
                         }
                       })
                     ],
@@ -76616,37 +76644,7 @@ var render = function() {
               )
             ])
           ])
-        : _c(
-            "div",
-            [
-              _c(
-                "b-alert",
-                {
-                  staticClass: "error__block",
-                  attrs: { show: "", variant: "success" }
-                },
-                [
-                  _c("span", [
-                    _vm._v("Мы пытаемся соедениться с базой данных")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "spinner-border text-success",
-                      attrs: { role: "status" }
-                    },
-                    [
-                      _c("span", { staticClass: "sr-only" }, [
-                        _vm._v("Loading...")
-                      ])
-                    ]
-                  )
-                ]
-              )
-            ],
-            1
-          )
+        : _c("div", [_vm._m(3)])
     ])
   ])
 }
@@ -76700,6 +76698,30 @@ var staticRenderFns = [
         ])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "alert alert-success error__block",
+        attrs: { role: "alert" }
+      },
+      [
+        _c("span", [_vm._v("Мы пытаемся соедениться с базой данных")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "spinner-border text-success",
+            attrs: { role: "status" }
+          },
+          [_c("span", { staticClass: "sr-only" }, [_vm._v("Loading...")])]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true

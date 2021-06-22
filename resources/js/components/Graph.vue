@@ -13,6 +13,9 @@ export default {
         },
         windowWidth:{
             default: null
+        },
+        selectedDate:{
+            default: null
         }
   },
   data(){
@@ -55,8 +58,16 @@ export default {
             }
         }
     },
+    watch:{
+        selectedDate(){
+            console.log(this.selectedDate);
+            //this.$data._chart.clear();
+            //this.updateGraphData();
+        }
+    },
     mounted () {
         this.updateGraphData();
+        console.log(this.selectedDate);
         this.selectedWatcher = this.$watch('selected', this.updateChart, {
             deep: true
         });
