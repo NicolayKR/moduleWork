@@ -95,11 +95,11 @@ class ModelsController extends Controller
                     $array_data[$value['id_modules']]['pointBackgroundColor'][] = $array_data[$value['id_modules']]['pointBackgroundColor'][0];
                 }
                 if($case_par == 3){
-                    $current_array_downloads = [];
-                    for($index = 0; $index < 12 ; $index++){
-                        array_push($current_array_downloads,0);
-                    }
                     if (!array_key_exists('downloads', $array_data[$value['id_modules']])) {
+                        $current_array_downloads = [];
+                        for($index = 0; $index < 12 ; $index++){
+                            array_push($current_array_downloads,0);
+                        }
                         $array_data[$value['id_modules']]['downloads'] = $current_array_downloads;
                     }
                     for($index = 0; $index < 12 ; $index++){
