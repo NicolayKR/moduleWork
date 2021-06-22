@@ -60,7 +60,6 @@ export default {
     },
     mounted () {
         this.updateGraphData();
-        console.log(this.selectedDate);
         this.selectedWatcher = this.$watch('selected', this.updateChart, {
             deep: true
         });

@@ -6,7 +6,7 @@
                     <a class="btn btn-primary btn-lg btn-sm" href="/logout">Выйти</a>
                 </div>
                 <div class="select_date">
-                    <select v-model="selectedDate">
+                    <select v-model="selectedDate" class="form-control">
                         <option disabled value="">Выберите один из вариантов</option>
                         <option>За неделю</option>
                         <option>За месяц</option>

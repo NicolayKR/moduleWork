@@ -1923,7 +1923,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   mounted: function mounted() {
     this.updateGraphData();
-    console.log(this.selectedDate);
     this.selectedWatcher = this.$watch('selected', this.updateChart, {
       deep: true
     });
@@ -76502,6 +76501,7 @@ var render = function() {
                       expression: "selectedDate"
                     }
                   ],
+                  staticClass: "form-control",
                   on: {
                     change: function($event) {
                       var $$selectedVal = Array.prototype.filter
