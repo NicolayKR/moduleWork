@@ -154,6 +154,8 @@ export default {
                 }       
             },
         getDateFromGraph(){
+            this.datacollection.labels = [];
+            this.datacollection.datasets = [];
             for(var key in this.modelsData) {
                     var current_dataset ={};
                     var checked_dataset ={};

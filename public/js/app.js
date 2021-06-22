@@ -1921,12 +1921,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  watch: {
-    selectedDate: function selectedDate() {
-      console.log(this.selectedDate); //this.$data._chart.clear();
-      //this.updateGraphData();
-    }
-  },
   mounted: function mounted() {
     this.updateGraphData();
     console.log(this.selectedDate);
@@ -2179,6 +2173,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     getDateFromGraph: function getDateFromGraph() {
+      this.datacollection.labels = [];
+      this.datacollection.datasets = [];
+
       for (var key in this.modelsData) {
         var current_dataset = {};
         var checked_dataset = {};

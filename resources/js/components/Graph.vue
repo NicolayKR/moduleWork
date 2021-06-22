@@ -58,13 +58,6 @@ export default {
             }
         }
     },
-    watch:{
-        selectedDate(){
-            console.log(this.selectedDate);
-            //this.$data._chart.clear();
-            //this.updateGraphData();
-        }
-    },
     mounted () {
         this.updateGraphData();
         console.log(this.selectedDate);
