@@ -73,14 +73,14 @@ Route::get('/test', function(){
     //             for($index = 0; $index < 12 ; $index++){
     //                 array_push($current_array_downloads,0);
     //             }
-    //             if (!array_key_exists('downloads', $array_data[$value['id_modules']])) {
-    //                 $array_data[$value['id_modules']]['downloads'] = $current_array_downloads;
-    //             }
-    //             for($index = 0; $index < 12 ; $index++){
-    //                 if($index == (int)$value['created_date']-1){
-    //                     $array_data[$value['id_modules']]['downloads'][$index] = (int)$value['downloads'];
+    //             $array_data[$value['id_modules']]['downloads'] = $current_array_downloads;
+    //             foreach ($collection_history as  $value) {
+    //                 for($index = 0; $index < 12 ; $index++){
+    //                     if($index == (int)$value['created_date']-1){
+    //                         $array_data[$value['id_modules']]['downloads'][$index] = (int)$value['downloads'];
+    //                     }
     //                 }
-    //             }                
+    //             }
     //         }
     //         else{
     //             $array_data[$value['id_modules']]['downloads'][] = (int)$value['downloads'];
@@ -112,5 +112,5 @@ Route::get('/test', function(){
     //         $final_array[$i] = $value;
     //         $i++;
     //     }
-    //    return $final_array;   
+    //     return $final_array;   
 });
