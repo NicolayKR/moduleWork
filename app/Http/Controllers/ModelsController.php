@@ -49,7 +49,7 @@ class ModelsController extends Controller
                                     ->selectRaw("DATE(created_at) as created_date")
                                     ->orderBy('downloads', 'desc')->get();
             }
-       if($case_par == 3) {
+        else if($case_par == 3) {
             $collection_history = CompetitorHistory::select('name','id_modules')
                                     ->selectRaw("month(created_at) as created_date")
                                     ->selectRaw("max(downloads) as downloads")
