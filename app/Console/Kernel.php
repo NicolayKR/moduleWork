@@ -30,8 +30,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('minute:updatedb')->everyMinute();//daily()->timezone("Europe/Moscow");
-        $schedule->command('update:HistoryChange')->everyMinute();//->daily()->timezone("Europe/Moscow");
+        $schedule->command('minute:updatedb')->daily()->timezone("Europe/Moscow");
+        $schedule->command('update:HistoryChange')->daily()->timezone("Europe/Moscow");
     }
 
     /**
