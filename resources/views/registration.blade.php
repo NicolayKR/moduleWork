@@ -29,7 +29,10 @@
         </div>
         <div class="form-group">
             <label for="confim_password" class="col-form-label-lg">Повторите пароль</label>
-            <input class="form-control" id="confim_password" name="confim_password" type="password" value="" placeholder="Пароль">
+            <input class="form-control" id="confimpassword" name="confimpassword" type="password" value="" placeholder="Пароль">
+            @error('confimpassword')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="form-group d-grid">
             <div class="registration_button-wrapper">

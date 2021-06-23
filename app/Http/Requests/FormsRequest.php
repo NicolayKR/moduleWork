@@ -26,14 +26,14 @@ class FormsRequest extends FormRequest
         return [
             'email' =>'required',
             'password'=>'required|min:6|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/',
-            'confim_password'=>'required'
+            'confimpassword'=>'required'
         ];
     }
     public function attributes(){
         return [
             'email'=>'Email',
             'password'=>'Пароль',
-            'confim_password'=>'Повторите пароль'
+            'confimpassword'=>'Повторите пароль'
         ];
     }
     public function messages(){
@@ -42,7 +42,7 @@ class FormsRequest extends FormRequest
             'password.required'=>'Поле Пароль - обязательное',
             'password.min'=>'Пароль должен содержать больше 6 символов',
             'password.regex'=>'Пароль должен содержать (минимум 1 цифру, а также строчный и заглавный символы)',
-            'confim_password.required'=>'Подтверждение пароля - обязательное',
+            'confimpassword.required'=>'Подтверждение пароля - обязательное',
         ];
     }
 

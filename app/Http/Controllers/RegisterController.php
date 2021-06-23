@@ -21,7 +21,12 @@ class RegisterController extends Controller
                 'email' =>'Такая почта уже используется'
             ]);
         }
-        if($request->input('password') == $request->input('confim_password')){
+        if($request->strlen(input('confimpassword')) == 0 ){
+            return redirect(route('user.registration'))->withErrors([
+                'confimpassword' =>'Поле не может быть пустым',
+             ]);
+        }
+        if($request->input('password') == $request->input('confimpassword')){
             date_default_timezone_set("Europe/Moscow");
             $user = User::create($validateFields);
             if($user){

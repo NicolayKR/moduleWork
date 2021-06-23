@@ -76661,20 +76661,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "d-grid d-md-flex justify-content-md-end" },
-      [
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-primary btn-lg btn-sm",
-            attrs: { href: "/logout" }
-          },
-          [_vm._v("Выйти")]
-        )
-      ]
-    )
+    return _c("div", { staticClass: "d-grid d-flex justify-content-end" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary btn-lg btn-sm",
+          attrs: { href: "/logout" }
+        },
+        [_vm._v("Выйти")]
+      )
+    ])
   },
   function() {
     var _vm = this

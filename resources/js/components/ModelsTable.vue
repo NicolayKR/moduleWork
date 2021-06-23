@@ -2,7 +2,7 @@
     <div class="wrapp">
         <div class="container">
             <div v-if="flagTable">
-                <div class="d-grid d-md-flex justify-content-md-end">
+                <div class="d-grid d-flex justify-content-end">
                     <a class="btn btn-primary btn-lg btn-sm" href="/logout">Выйти</a>
                 </div>
                 <div class="select_date">
